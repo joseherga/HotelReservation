@@ -59,6 +59,12 @@
     <Compile Include="mainMenu.Designer.cs">
       <DependentUpon>mainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="roomsAvailable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="roomsAvailable.Designer.cs">
+      <DependentUpon>roomsAvailable.cs</DependentUpon>
+    </Compile>
     <Compile Include="signupCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mainMenu.resx">
       <DependentUpon>mainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="roomsAvailable.resx">
+      <DependentUpon>roomsAvailable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="signupCustomer.resx">
       <DependentUpon>signupCustomer.cs</DependentUpon>

@@ -15,6 +15,8 @@ namespace HotelReservation
     {
         SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dbHotelReserve;Integrated Security=True");
         SqlCommand cmd;
+
+        login lg = new login();
         public signupCustomer()
         {
             InitializeComponent();
@@ -30,13 +32,18 @@ namespace HotelReservation
 
             con.Open();
             cmd = new SqlCommand("INSERT into UserInfo VALUES(@Username,@Password,@Fullname)", con);
-            cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+            cmd.Parameters.AddWithValue("@Username", txtFullname.Text);
             cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@Fullname", txtFullname.Text);
+            cmd.Parameters.AddWithValue("@Fullname", txtUsername.Text);
             cmd.ExecuteNonQuery();
             con.Close();
 
-            login lg = new login();
+            lg.Show();
+            this.Hide();
+        }
+
+        private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
             lg.Show();
             this.Hide();
         }
