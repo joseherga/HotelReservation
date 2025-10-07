@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace HotelReservation
 {
-    public partial class login : Form
+    public partial class LoginForm : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dbHotelReserve;Integrated Security=True");
-        public login()
+        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True");
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace HotelReservation
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            signupCustomer CustomerPage = new signupCustomer();
+            SignupForm CustomerPage = new SignupForm();
             CustomerPage.Show();
             this.Hide();
         }
@@ -43,10 +43,10 @@ namespace HotelReservation
             }
 
             bool loginSuccess = false;
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(1) FROM UserInfo WHERE Username=@username AND Password=@password", con))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(1) FROM UserInfo WHERE Username=@Username AND Password=@Password", con))
             {
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Password", password);
 
                 con.Open();
                 int count = (int)cmd.ExecuteScalar();
@@ -57,7 +57,7 @@ namespace HotelReservation
 
             if (loginSuccess)
             {
-                mainMenu mainPage = new mainMenu();
+                MainMenuForm mainPage = new MainMenuForm();
                 mainPage.Show();
                 this.Hide();
             }

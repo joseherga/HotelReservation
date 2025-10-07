@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace HotelReservation
 {
-    public partial class mainMenu : Form
+    public partial class MainMenuForm : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dbHotelReserve;Integrated Security=True");
-        public mainMenu()
+        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True");
+        public MainMenuForm()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace HotelReservation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            login lg = new login();
+            LoginForm lg = new LoginForm();
             lg.Show();
             this.Hide();
         }

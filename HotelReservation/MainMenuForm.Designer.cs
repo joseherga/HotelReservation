@@ -1,6 +1,6 @@
 ﻿namespace HotelReservation
 {
-    partial class mainMenu
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.

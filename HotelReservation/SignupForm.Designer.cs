@@ -1,6 +1,6 @@
 ﻿namespace HotelReservation
 {
-    partial class signupCustomer
+    partial class SignupForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signupCustomer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignupForm));
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
-            this.txtFullname = new System.Windows.Forms.TextBox();
+            this.txtFirstname = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnReg = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblFullname = new System.Windows.Forms.Label();
+            this.lblFirstname = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLogin = new System.Windows.Forms.LinkLabel();
+            this.lblLastname = new System.Windows.Forms.Label();
+            this.txtLastname = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblUsername
@@ -47,7 +49,7 @@
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblUsername.Location = new System.Drawing.Point(556, 237);
+            this.lblUsername.Location = new System.Drawing.Point(556, 247);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(61, 13);
             this.lblUsername.TabIndex = 0;
@@ -59,22 +61,22 @@
             this.lblPass.BackColor = System.Drawing.Color.Transparent;
             this.lblPass.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPass.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblPass.Location = new System.Drawing.Point(556, 263);
+            this.lblPass.Location = new System.Drawing.Point(556, 273);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(59, 13);
             this.lblPass.TabIndex = 1;
             this.lblPass.Text = "Password:";
             // 
-            // txtFullname
+            // txtFirstname
             // 
-            this.txtFullname.Location = new System.Drawing.Point(623, 208);
-            this.txtFullname.Name = "txtFullname";
-            this.txtFullname.Size = new System.Drawing.Size(147, 20);
-            this.txtFullname.TabIndex = 2;
+            this.txtFirstname.Location = new System.Drawing.Point(623, 192);
+            this.txtFirstname.Name = "txtFirstname";
+            this.txtFirstname.Size = new System.Drawing.Size(147, 20);
+            this.txtFirstname.TabIndex = 2;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(623, 260);
+            this.txtPassword.Location = new System.Drawing.Point(623, 270);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(147, 20);
@@ -107,21 +109,21 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "SIGN UP";
             // 
-            // lblFullname
+            // lblFirstname
             // 
-            this.lblFullname.AutoSize = true;
-            this.lblFullname.BackColor = System.Drawing.Color.Transparent;
-            this.lblFullname.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullname.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblFullname.Location = new System.Drawing.Point(556, 211);
-            this.lblFullname.Name = "lblFullname";
-            this.lblFullname.Size = new System.Drawing.Size(60, 13);
-            this.lblFullname.TabIndex = 6;
-            this.lblFullname.Text = "Full name:";
+            this.lblFirstname.AutoSize = true;
+            this.lblFirstname.BackColor = System.Drawing.Color.Transparent;
+            this.lblFirstname.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFirstname.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblFirstname.Location = new System.Drawing.Point(556, 195);
+            this.lblFirstname.Name = "lblFirstname";
+            this.lblFirstname.Size = new System.Drawing.Size(63, 13);
+            this.lblFirstname.TabIndex = 6;
+            this.lblFirstname.Text = "First name:";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(623, 234);
+            this.txtUsername.Location = new System.Drawing.Point(623, 244);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(147, 20);
             this.txtUsername.TabIndex = 7;
@@ -152,6 +154,25 @@
             this.linkLogin.Text = "log in";
             this.linkLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLogin_LinkClicked);
             // 
+            // lblLastname
+            // 
+            this.lblLastname.AutoSize = true;
+            this.lblLastname.BackColor = System.Drawing.Color.Transparent;
+            this.lblLastname.Font = new System.Drawing.Font("Segoe UI Historic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastname.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblLastname.Location = new System.Drawing.Point(556, 221);
+            this.lblLastname.Name = "lblLastname";
+            this.lblLastname.Size = new System.Drawing.Size(61, 13);
+            this.lblLastname.TabIndex = 10;
+            this.lblLastname.Text = "Last name:";
+            // 
+            // txtLastname
+            // 
+            this.txtLastname.Location = new System.Drawing.Point(623, 218);
+            this.txtLastname.Name = "txtLastname";
+            this.txtLastname.Size = new System.Drawing.Size(147, 20);
+            this.txtLastname.TabIndex = 11;
+            // 
             // signupCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,14 +180,16 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtLastname);
+            this.Controls.Add(this.lblLastname);
             this.Controls.Add(this.linkLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.lblFullname);
+            this.Controls.Add(this.lblFirstname);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnReg);
             this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtFullname);
+            this.Controls.Add(this.txtFirstname);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblUsername);
             this.DoubleBuffered = true;
@@ -182,14 +205,16 @@
 
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPass;
-        private System.Windows.Forms.TextBox txtFullname;
+        private System.Windows.Forms.TextBox txtFirstname;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnReg;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblFullname;
+        private System.Windows.Forms.Label lblFirstname;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLogin;
+        private System.Windows.Forms.Label lblLastname;
+        private System.Windows.Forms.TextBox txtLastname;
     }
 }
 
