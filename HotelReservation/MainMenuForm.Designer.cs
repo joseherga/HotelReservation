@@ -28,58 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
+            this.btnSearchRooms = new System.Windows.Forms.Button();
+            this.btnViewReservations = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnAdminPanel = new System.Windows.Forms.Button();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btnSearchRooms
             // 
-            this.button1.Location = new System.Drawing.Point(196, 181);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Rooms";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearchRooms.Font = new System.Drawing.Font("Segoe Fluent Icons", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchRooms.Location = new System.Drawing.Point(30, 135);
+            this.btnSearchRooms.Name = "btnSearchRooms";
+            this.btnSearchRooms.Size = new System.Drawing.Size(260, 60);
+            this.btnSearchRooms.TabIndex = 0;
+            this.btnSearchRooms.Text = "Search Rooms";
+            this.btnSearchRooms.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnViewReservations
             // 
-            this.button2.Location = new System.Drawing.Point(317, 181);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Reservations";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnViewReservations.Font = new System.Drawing.Font("Segoe Fluent Icons", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewReservations.Location = new System.Drawing.Point(30, 287);
+            this.btnViewReservations.Name = "btnViewReservations";
+            this.btnViewReservations.Size = new System.Drawing.Size(250, 60);
+            this.btnViewReservations.TabIndex = 1;
+            this.btnViewReservations.Text = "View Reservations";
+            this.btnViewReservations.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnLogout
             // 
-            this.button3.Location = new System.Drawing.Point(449, 181);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Log out";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnLogout.Location = new System.Drawing.Point(897, 12);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 2;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.button3_Click);
             // 
-            // mainMenu
+            // btnAdminPanel
+            // 
+            this.btnAdminPanel.Font = new System.Drawing.Font("Segoe Fluent Icons", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdminPanel.Location = new System.Drawing.Point(30, 437);
+            this.btnAdminPanel.Name = "btnAdminPanel";
+            this.btnAdminPanel.Size = new System.Drawing.Size(250, 60);
+            this.btnAdminPanel.TabIndex = 3;
+            this.btnAdminPanel.Text = "Admin Panel";
+            this.btnAdminPanel.UseVisualStyleBackColor = true;
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe Fluent Icons", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(25, 70);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(93, 21);
+            this.lblWelcome.TabIndex = 4;
+            this.lblWelcome.Text = "Welcome, ";
+            // 
+            // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Name = "mainMenu";
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.btnAdminPanel);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnViewReservations);
+            this.Controls.Add(this.btnSearchRooms);
+            this.Name = "MainMenuForm";
             this.Text = "MainMenu";
             this.Load += new System.EventHandler(this.mainMenu_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSearchRooms;
+        private System.Windows.Forms.Button btnViewReservations;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnAdminPanel;
+        private System.Windows.Forms.Label lblWelcome;
     }
 }
