@@ -33,8 +33,8 @@ namespace HotelReservation
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
+            string username = txtUser.Text.Trim();
+            string password = txtPass.Text.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -71,11 +71,11 @@ namespace HotelReservation
         {
             if (chckBackShowPass.Checked)
             {
-                txtPassword.UseSystemPasswordChar = false;
+                txtPass.UseSystemPasswordChar = false;
             }
             else
             {
-                txtPassword.UseSystemPasswordChar = true;
+                txtPass.UseSystemPasswordChar = true;
             }
         }
 
