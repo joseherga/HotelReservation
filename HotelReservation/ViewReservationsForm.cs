@@ -13,8 +13,9 @@ namespace HotelReservation
 {
     public partial class ViewReservationsForm : Form
     {
-        private string Username;
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True");
+        static CallDatabase callDatabase = new CallDatabase();
+        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+        SqlCommand cmd;
         public ViewReservationsForm(string currentUser )
         {
             InitializeComponent();
@@ -23,6 +24,13 @@ namespace HotelReservation
         private void ViewReservationsForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            MainMenuForm mm = new MainMenuForm();
+            mm.Show();
+            this.Hide();
         }
     }
 }

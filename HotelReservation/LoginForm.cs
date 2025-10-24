@@ -13,7 +13,9 @@ namespace HotelReservation
 {
     public partial class LoginForm : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True");
+        static CallDatabase callDatabase = new CallDatabase();
+        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+        SqlCommand cmd;
         public LoginForm()
         {
             InitializeComponent();
@@ -78,6 +80,7 @@ namespace HotelReservation
             {
                 txtPass.UseSystemPasswordChar = true;
             }
+
         }
 
         private void label2_Click(object sender, EventArgs e)

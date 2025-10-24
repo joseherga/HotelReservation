@@ -41,7 +41,7 @@
             this.btnSearchRooms.Font = new System.Drawing.Font("Segoe Fluent Icons", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchRooms.Location = new System.Drawing.Point(30, 135);
             this.btnSearchRooms.Name = "btnSearchRooms";
-            this.btnSearchRooms.Size = new System.Drawing.Size(260, 60);
+            this.btnSearchRooms.Size = new System.Drawing.Size(250, 60);
             this.btnSearchRooms.TabIndex = 0;
             this.btnSearchRooms.Text = "Search Rooms";
             this.btnSearchRooms.UseVisualStyleBackColor = true;
@@ -55,6 +55,7 @@
             this.btnViewReservations.TabIndex = 1;
             this.btnViewReservations.Text = "View Reservations";
             this.btnViewReservations.UseVisualStyleBackColor = true;
+            this.btnViewReservations.Click += new System.EventHandler(this.btnViewReservations_Click);
             // 
             // btnLogout
             // 

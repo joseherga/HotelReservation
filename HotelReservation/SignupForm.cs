@@ -13,7 +13,8 @@ namespace HotelReservation
 {
     public partial class SignupForm : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True");
+        static CallDatabase callDatabase = new CallDatabase();
+        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
         SqlCommand cmd;
 
         LoginForm lg = new LoginForm();
