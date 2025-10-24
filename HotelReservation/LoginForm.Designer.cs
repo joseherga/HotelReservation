@@ -90,6 +90,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(150, 20);
             this.txtPass.TabIndex = 3;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // label1
             // 

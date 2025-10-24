@@ -69,6 +69,7 @@ namespace HotelReservation
 
         private void chckBackShowPass_CheckedChanged(object sender, EventArgs e)
         {
+
             if (chckBackShowPass.Checked)
             {
                 txtPass.UseSystemPasswordChar = false;
