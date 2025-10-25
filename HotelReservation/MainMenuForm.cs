@@ -40,5 +40,12 @@ namespace HotelReservation
             vr.Show();
             this.Hide();
         }
+
+        private void btnSearchRooms_Click(object sender, EventArgs e)
+        {
+            BookingDetailsForm bd = new BookingDetailsForm();
+            bd.Show();
+            this.Hide();
+        }
     }
 }

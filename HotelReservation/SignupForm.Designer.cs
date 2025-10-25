@@ -42,9 +42,9 @@
             this.lblLastname = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,6 +196,20 @@
             this.panel1.Size = new System.Drawing.Size(326, 311);
             this.panel1.TabIndex = 12;
             // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(127, 140);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(147, 20);
+            this.txtPass.TabIndex = 16;
+            // 
+            // txtUser
+            // 
+            this.txtUser.Location = new System.Drawing.Point(127, 109);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(147, 20);
+            this.txtUser.TabIndex = 15;
+            // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.Silver;
@@ -211,20 +225,6 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtUser
-            // 
-            this.txtUser.Location = new System.Drawing.Point(127, 109);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(147, 20);
-            this.txtUser.TabIndex = 15;
-            // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(127, 140);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(147, 20);
-            this.txtPass.TabIndex = 16;
-            // 
             // SignupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,6 +235,7 @@
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.Name = "SignupForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SignupForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);

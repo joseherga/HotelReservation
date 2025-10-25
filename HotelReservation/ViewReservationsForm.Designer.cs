@@ -41,14 +41,14 @@
             // dgvRegistrations
             // 
             this.dgvRegistrations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistrations.Location = new System.Drawing.Point(55, 66);
+            this.dgvRegistrations.Location = new System.Drawing.Point(164, 180);
             this.dgvRegistrations.Name = "dgvRegistrations";
             this.dgvRegistrations.Size = new System.Drawing.Size(676, 334);
             this.dgvRegistrations.TabIndex = 0;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(413, 37);
+            this.btnRefresh.Location = new System.Drawing.Point(603, 151);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(494, 37);
+            this.btnDelete.Location = new System.Drawing.Point(684, 151);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(133, 39);
+            this.txtSearch.Location = new System.Drawing.Point(231, 151);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(197, 20);
             this.txtSearch.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearch.Location = new System.Drawing.Point(76, 42);
+            this.lblSearch.Location = new System.Drawing.Point(174, 156);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(51, 13);
             this.lblSearch.TabIndex = 4;
@@ -83,7 +83,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(575, 37);
+            this.btnBack.Location = new System.Drawing.Point(765, 151);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 5;
@@ -97,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
@@ -105,6 +105,7 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.dgvRegistrations);
             this.Name = "ViewReservationsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewReservations";
             this.Load += new System.EventHandler(this.ViewReservationsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrations)).EndInit();

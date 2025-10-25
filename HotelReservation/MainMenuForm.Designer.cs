@@ -43,8 +43,9 @@
             this.btnSearchRooms.Name = "btnSearchRooms";
             this.btnSearchRooms.Size = new System.Drawing.Size(250, 60);
             this.btnSearchRooms.TabIndex = 0;
-            this.btnSearchRooms.Text = "Search Rooms";
+            this.btnSearchRooms.Text = "Add Reservations";
             this.btnSearchRooms.UseVisualStyleBackColor = true;
+            this.btnSearchRooms.Click += new System.EventHandler(this.btnSearchRooms_Click);
             // 
             // btnViewReservations
             // 
@@ -101,6 +102,7 @@
             this.Controls.Add(this.btnViewReservations);
             this.Controls.Add(this.btnSearchRooms);
             this.Name = "MainMenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu";
             this.Load += new System.EventHandler(this.mainMenu_Load);
             this.ResumeLayout(false);
