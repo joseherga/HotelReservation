@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CallDatabase.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="BookingDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,9 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DB_Create_UserInfo.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
