@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.RoomType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgRooms = new System.Windows.Forms.DataGridView();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.lblCheckIn = new System.Windows.Forms.Label();
             this.lblCheckOut = new System.Windows.Forms.Label();
@@ -48,29 +46,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnProceed = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtRate = new System.Windows.Forms.TextBox();
+            this.lblRoomRate = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRooms)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgRooms
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RoomType,
-            this.Rate});
-            this.dataGridView1.Location = new System.Drawing.Point(483, 98);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(245, 252);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // RoomType
-            // 
-            this.RoomType.HeaderText = "RoomType";
-            this.RoomType.Name = "RoomType";
-            // 
-            // Rate
-            // 
-            this.Rate.HeaderText = "Rate";
-            this.Rate.Name = "Rate";
+            this.dgRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgRooms.Location = new System.Drawing.Point(483, 98);
+            this.dgRooms.Name = "dgRooms";
+            this.dgRooms.Size = new System.Drawing.Size(245, 252);
+            this.dgRooms.TabIndex = 0;
             // 
             // dateTimePicker2
             // 
@@ -172,7 +159,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(134, 314);
+            this.comboBox1.Location = new System.Drawing.Point(134, 347);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(292, 21);
             this.comboBox1.TabIndex = 14;
@@ -180,7 +167,7 @@
             // lblNumOfGuests
             // 
             this.lblNumOfGuests.AutoSize = true;
-            this.lblNumOfGuests.Location = new System.Drawing.Point(26, 317);
+            this.lblNumOfGuests.Location = new System.Drawing.Point(26, 350);
             this.lblNumOfGuests.Name = "lblNumOfGuests";
             this.lblNumOfGuests.Size = new System.Drawing.Size(105, 13);
             this.lblNumOfGuests.TabIndex = 15;
@@ -198,7 +185,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(351, 341);
+            this.btnCancel.Location = new System.Drawing.Point(351, 374);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -208,18 +195,36 @@
             // 
             // btnProceed
             // 
-            this.btnProceed.Location = new System.Drawing.Point(134, 341);
+            this.btnProceed.Location = new System.Drawing.Point(134, 374);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(75, 23);
             this.btnProceed.TabIndex = 19;
             this.btnProceed.Text = "proceed";
             this.btnProceed.UseVisualStyleBackColor = true;
             // 
+            // txtRate
+            // 
+            this.txtRate.Location = new System.Drawing.Point(134, 312);
+            this.txtRate.Name = "txtRate";
+            this.txtRate.Size = new System.Drawing.Size(292, 20);
+            this.txtRate.TabIndex = 20;
+            // 
+            // lblRoomRate
+            // 
+            this.lblRoomRate.AutoSize = true;
+            this.lblRoomRate.Location = new System.Drawing.Point(26, 315);
+            this.lblRoomRate.Name = "lblRoomRate";
+            this.lblRoomRate.Size = new System.Drawing.Size(75, 13);
+            this.lblRoomRate.TabIndex = 21;
+            this.lblRoomRate.Text = "ROOM RATE:";
+            // 
             // BookingDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.lblRoomRate);
+            this.Controls.Add(this.txtRate);
             this.Controls.Add(this.btnProceed);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
@@ -237,12 +242,12 @@
             this.Controls.Add(this.lblCheckIn);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgRooms);
             this.Name = "BookingDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookingDetailsForm";
             this.Load += new System.EventHandler(this.BookingDetailsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRooms)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,12 +255,10 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgRooms;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label lblCheckIn;
         private System.Windows.Forms.Label lblCheckOut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoomType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rate;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.ComboBox cbRoomType;
         private System.Windows.Forms.Label lblRoomType;
@@ -270,5 +273,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnProceed;
+        private System.Windows.Forms.TextBox txtRate;
+        private System.Windows.Forms.Label lblRoomRate;
     }
 }

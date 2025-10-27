@@ -21,12 +21,15 @@ namespace HotelReservation
         {
             InitializeComponent();
             _userId = userId;
+
+            dgRooms.CellClick -= dgRooms_CellClick;
+            dgRooms.CellClick += dgRooms_CellClick;
         }
 
         private void BookingDetailsForm_Load(object sender, EventArgs e)
         {
-            if (_userId > 0)
-                LoadUserDetails(_userId);
+            if (_userId > 0) LoadUserDetails(_userId);
+            LoadRoomData();
         }
 
         private void LoadUserDetails(int userId)
@@ -62,6 +65,54 @@ namespace HotelReservation
                     MessageBox.Show("Error loading user details: " + ex.Message);
                 }
             }
+        }
+
+        private void LoadRoomData()
+        {
+            using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
+            {
+                string query = "SELECT RoomType, Rate FROM Rooms";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+
+                try
+                {
+                    con.Open();
+                    da.Fill(dt);
+                    dgRooms.DataSource = dt;
+
+                    dgRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgRooms.ReadOnly = true;
+                    dgRooms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading rooms: " + ex.Message);
+                }
+            }
+        }
+
+        private void dgRooms_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var row = dgRooms.Rows[e.RowIndex];
+
+            string roomType = null;
+            string rate = null;
+
+            if (dgRooms.Columns.Contains("RoomType"))
+                roomType = row.Cells["RoomType"]?.Value?.ToString();
+            else if (row.Cells.Count > 0)
+                roomType = row.Cells[0]?.Value?.ToString();
+
+            if (dgRooms.Columns.Contains("Rate"))
+                rate = row.Cells["Rate"]?.Value?.ToString();
+            else if (row.Cells.Count > 1)
+                rate = row.Cells[1]?.Value?.ToString();
+
+            cbRoomType.Text = roomType ?? "";
+            txtRate.Text = rate ?? "";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
