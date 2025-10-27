@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dgRooms = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtCheckOut = new System.Windows.Forms.DateTimePicker();
             this.lblCheckIn = new System.Windows.Forms.Label();
             this.lblCheckOut = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dtCheckIn = new System.Windows.Forms.DateTimePicker();
             this.cbRoomType = new System.Windows.Forms.ComboBox();
             this.lblRoomType = new System.Windows.Forms.Label();
             this.txtFullName = new System.Windows.Forms.TextBox();
@@ -41,13 +41,13 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblNumOfGuests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnProceed = new System.Windows.Forms.Button();
             this.txtRate = new System.Windows.Forms.TextBox();
             this.lblRoomRate = new System.Windows.Forms.Label();
+            this.cbGuests = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgRooms)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,12 +59,12 @@
             this.dgRooms.Size = new System.Drawing.Size(245, 252);
             this.dgRooms.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // dtCheckOut
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(134, 243);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(292, 20);
-            this.dateTimePicker2.TabIndex = 2;
+            this.dtCheckOut.Location = new System.Drawing.Point(134, 243);
+            this.dtCheckOut.Name = "dtCheckOut";
+            this.dtCheckOut.Size = new System.Drawing.Size(292, 20);
+            this.dtCheckOut.TabIndex = 2;
             // 
             // lblCheckIn
             // 
@@ -84,12 +84,12 @@
             this.lblCheckOut.TabIndex = 5;
             this.lblCheckOut.Text = "CHECK OUT:";
             // 
-            // dateTimePicker3
+            // dtCheckIn
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(134, 208);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(292, 20);
-            this.dateTimePicker3.TabIndex = 1;
+            this.dtCheckIn.Location = new System.Drawing.Point(134, 208);
+            this.dtCheckIn.Name = "dtCheckIn";
+            this.dtCheckIn.Size = new System.Drawing.Size(292, 20);
+            this.dtCheckIn.TabIndex = 1;
             // 
             // cbRoomType
             // 
@@ -156,14 +156,6 @@
             this.txtEmail.Size = new System.Drawing.Size(292, 20);
             this.txtEmail.TabIndex = 13;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(134, 347);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(292, 21);
-            this.comboBox1.TabIndex = 14;
-            // 
             // lblNumOfGuests
             // 
             this.lblNumOfGuests.AutoSize = true;
@@ -201,6 +193,7 @@
             this.btnProceed.TabIndex = 19;
             this.btnProceed.Text = "proceed";
             this.btnProceed.UseVisualStyleBackColor = true;
+            this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
             // 
             // txtRate
             // 
@@ -218,6 +211,14 @@
             this.lblRoomRate.TabIndex = 21;
             this.lblRoomRate.Text = "ROOM RATE:";
             // 
+            // cbGuests
+            // 
+            this.cbGuests.FormattingEnabled = true;
+            this.cbGuests.Location = new System.Drawing.Point(134, 347);
+            this.cbGuests.Name = "cbGuests";
+            this.cbGuests.Size = new System.Drawing.Size(292, 21);
+            this.cbGuests.TabIndex = 14;
+            // 
             // BookingDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,7 +230,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNumOfGuests);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbGuests);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.txtPhone);
@@ -240,8 +241,8 @@
             this.Controls.Add(this.cbRoomType);
             this.Controls.Add(this.lblCheckOut);
             this.Controls.Add(this.lblCheckIn);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dtCheckOut);
+            this.Controls.Add(this.dtCheckIn);
             this.Controls.Add(this.dgRooms);
             this.Name = "BookingDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -256,10 +257,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgRooms;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtCheckOut;
         private System.Windows.Forms.Label lblCheckIn;
         private System.Windows.Forms.Label lblCheckOut;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dtCheckIn;
         private System.Windows.Forms.ComboBox cbRoomType;
         private System.Windows.Forms.Label lblRoomType;
         private System.Windows.Forms.TextBox txtFullName;
@@ -268,12 +269,12 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblNumOfGuests;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnProceed;
         private System.Windows.Forms.TextBox txtRate;
         private System.Windows.Forms.Label lblRoomRate;
+        private System.Windows.Forms.ComboBox cbGuests;
     }
 }

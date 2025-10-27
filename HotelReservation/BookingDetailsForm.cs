@@ -30,6 +30,7 @@ namespace HotelReservation
         {
             if (_userId > 0) LoadUserDetails(_userId);
             LoadRoomData();
+            LoadGuestOptions(4);
         }
 
         private void LoadUserDetails(int userId)
@@ -115,6 +116,18 @@ namespace HotelReservation
             txtRate.Text = rate ?? "";
         }
 
+        private void LoadGuestOptions(int maxGuests)
+        {
+            cbGuests.Items.Clear();
+
+            for (int i = 1; i <= maxGuests; i++)
+            {
+                cbGuests.Items.Add(i.ToString());
+            }
+
+            cbGuests.SelectedIndex = 0;
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             MainMenuForm mm = new MainMenuForm();
@@ -122,11 +135,24 @@ namespace HotelReservation
             this.Hide();
         }
 
-        private void ClearBookingFields()
+        private void btnProceed_Click(object sender, EventArgs e)
         {
-            txtFullName.Clear();
-            txtEmail.Clear();
-            txtPhone.Clear();
+            DateTime checkIn = dtCheckIn.Value;
+            DateTime checkOut = dtCheckOut.Value;
+
+            if (checkIn < DateTime.Today)
+            {
+                MessageBox.Show("Check-in date must be today or a future date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (checkOut <= checkIn)
+            {
+                MessageBox.Show("Check-out date must be after the check-in date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //CheckRoomAvailability(checkIn, checkOut);
         }
     }
 }
