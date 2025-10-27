@@ -99,6 +99,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ViewReservationsForm.resx">
       <DependentUpon>ViewReservationsForm.cs</DependentUpon>
@@ -115,6 +116,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bytelodge %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\click.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\booking.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
