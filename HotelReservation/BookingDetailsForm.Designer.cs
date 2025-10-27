@@ -37,17 +37,17 @@
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.cbRoomType = new System.Windows.Forms.ComboBox();
             this.lblRoomType = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblContactNum = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblNumOfGuests = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnReserve = new System.Windows.Forms.Button();
+            this.btnProceed = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.Rate});
             this.dataGridView1.Location = new System.Drawing.Point(483, 98);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(474, 252);
+            this.dataGridView1.Size = new System.Drawing.Size(245, 252);
             this.dataGridView1.TabIndex = 0;
             // 
             // RoomType
@@ -111,7 +111,6 @@
             this.cbRoomType.Name = "cbRoomType";
             this.cbRoomType.Size = new System.Drawing.Size(292, 21);
             this.cbRoomType.TabIndex = 6;
-            this.cbRoomType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // lblRoomType
             // 
@@ -122,12 +121,12 @@
             this.lblRoomType.TabIndex = 7;
             this.lblRoomType.Text = "ROOM TYPE:";
             // 
-            // textBox1
+            // txtFullName
             // 
-            this.textBox1.Location = new System.Drawing.Point(134, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(292, 20);
-            this.textBox1.TabIndex = 8;
+            this.txtFullName.Location = new System.Drawing.Point(134, 98);
+            this.txtFullName.Name = "txtFullName";
+            this.txtFullName.Size = new System.Drawing.Size(292, 20);
+            this.txtFullName.TabIndex = 8;
             // 
             // lblFullName
             // 
@@ -141,34 +140,34 @@
             // lblContactNum
             // 
             this.lblContactNum.AutoSize = true;
-            this.lblContactNum.Location = new System.Drawing.Point(26, 136);
+            this.lblContactNum.Location = new System.Drawing.Point(26, 173);
             this.lblContactNum.Name = "lblContactNum";
             this.lblContactNum.Size = new System.Drawing.Size(89, 13);
             this.lblContactNum.TabIndex = 10;
             this.lblContactNum.Text = "CONTACT NUM:";
             // 
-            // textBox2
+            // txtPhone
             // 
-            this.textBox2.Location = new System.Drawing.Point(134, 133);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(292, 20);
-            this.textBox2.TabIndex = 11;
+            this.txtPhone.Location = new System.Drawing.Point(134, 170);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(292, 20);
+            this.txtPhone.TabIndex = 11;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(26, 173);
+            this.lblEmail.Location = new System.Drawing.Point(26, 136);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 13);
             this.lblEmail.TabIndex = 12;
             this.lblEmail.Text = "EMAIL:";
             // 
-            // textBox3
+            // txtEmail
             // 
-            this.textBox3.Location = new System.Drawing.Point(134, 170);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(292, 20);
-            this.textBox3.TabIndex = 13;
+            this.txtEmail.Location = new System.Drawing.Point(134, 133);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(292, 20);
+            this.txtEmail.TabIndex = 13;
             // 
             // comboBox1
             // 
@@ -199,7 +198,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(781, 531);
+            this.btnCancel.Location = new System.Drawing.Point(351, 341);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -207,31 +206,31 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnReserve
+            // btnProceed
             // 
-            this.btnReserve.Location = new System.Drawing.Point(680, 531);
-            this.btnReserve.Name = "btnReserve";
-            this.btnReserve.Size = new System.Drawing.Size(75, 23);
-            this.btnReserve.TabIndex = 18;
-            this.btnReserve.Text = "reserve";
-            this.btnReserve.UseVisualStyleBackColor = true;
+            this.btnProceed.Location = new System.Drawing.Point(134, 341);
+            this.btnProceed.Name = "btnProceed";
+            this.btnProceed.Size = new System.Drawing.Size(75, 23);
+            this.btnProceed.TabIndex = 19;
+            this.btnProceed.Text = "proceed";
+            this.btnProceed.UseVisualStyleBackColor = true;
             // 
             // BookingDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 661);
-            this.Controls.Add(this.btnReserve);
+            this.Controls.Add(this.btnProceed);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNumOfGuests);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.lblContactNum);
             this.Controls.Add(this.lblFullName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.lblRoomType);
             this.Controls.Add(this.cbRoomType);
             this.Controls.Add(this.lblCheckOut);
@@ -260,16 +259,16 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.ComboBox cbRoomType;
         private System.Windows.Forms.Label lblRoomType;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblContactNum;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblNumOfGuests;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnReserve;
+        private System.Windows.Forms.Button btnProceed;
     }
 }

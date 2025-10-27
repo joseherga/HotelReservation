@@ -13,12 +13,14 @@ namespace HotelReservation
 {
     public partial class MainMenuForm : Form
     {
+        private int _userId;
         static CallDatabase callDatabase = new CallDatabase();
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
         SqlCommand cmd;
-        public MainMenuForm()
+        public MainMenuForm(int userId = 0)
         {
             InitializeComponent();
+            _userId = userId;
         }
 
         private void mainMenu_Load(object sender, EventArgs e)
@@ -43,7 +45,7 @@ namespace HotelReservation
 
         private void btnSearchRooms_Click(object sender, EventArgs e)
         {
-            BookingDetailsForm bd = new BookingDetailsForm();
+            BookingDetailsForm bd = new BookingDetailsForm(_userId);
             bd.Show();
             this.Hide();
         }

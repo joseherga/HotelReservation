@@ -44,22 +44,34 @@ namespace HotelReservation
                 return;
             }
 
-            bool loginSuccess = false;
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(1) FROM UserInfo WHERE Username=@Username AND Password=@Password", con))
+            int userId = 0;
+            using (SqlCommand cmd = new SqlCommand("SELECT UserID FROM UserInfo WHERE Username=@Username AND Password=@Password", con))
             {
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
 
-                con.Open();
-                int count = (int)cmd.ExecuteScalar();
-                con.Close();
+                try
+                {
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+                    con.Close();
 
-                loginSuccess = count == 1;
+                    if (result != null && result != DBNull.Value)
+                    {
+                        userId = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (con.State == ConnectionState.Open) con.Close();
+                    MessageBox.Show("Error during login: " + ex.Message, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
-            if (loginSuccess)
+            if (userId > 0)
             {
-                MainMenuForm mainPage = new MainMenuForm();
+                MainMenuForm mainPage = new MainMenuForm(userId);
                 mainPage.Show();
                 this.Hide();
             }
@@ -80,12 +92,6 @@ namespace HotelReservation
             {
                 txtPass.UseSystemPasswordChar = true;
             }
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

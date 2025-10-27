@@ -32,8 +32,9 @@ namespace HotelReservation
         {
 
             con.Open();
-            cmd = new SqlCommand("INSERT into UserInfo VALUES(@FullName,@Email,@Username,@Password)", con);
+            cmd = new SqlCommand("INSERT into UserInfo VALUES(@FullName,@Phone,@Email,@Username,@Password)", con);
             cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
+            cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
             cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
             cmd.Parameters.AddWithValue("@Username", txtUser.Text);
             cmd.Parameters.AddWithValue("@Password", txtPass.Text);
