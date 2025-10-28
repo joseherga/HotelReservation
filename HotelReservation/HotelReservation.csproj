@@ -65,6 +65,13 @@
     <Compile Include="MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PaymentScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentScreenForm.Designer.cs">
+      <DependentUpon>PaymentScreenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Session.cs" />
     <Compile Include="SignupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentScreenForm.resx">
+      <DependentUpon>PaymentScreenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignupForm.resx">
       <DependentUpon>SignupForm.cs</DependentUpon>

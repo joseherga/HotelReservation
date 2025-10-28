@@ -9,7 +9,7 @@ namespace HotelReservation
     internal class CallDatabase
     {
 
-        string DatabasePath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\user\\OneDrive\\Documents\\hotel_db\\hotel_db.mdf;Integrated Security=True;Connect Timeout=30";
+        string DatabasePath = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True";
 
         public string GetDatabasePath()
         {

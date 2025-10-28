@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelReservation
 {
     public partial class MainMenuForm : Form
     {
-        private int _userId;
         static CallDatabase callDatabase = new CallDatabase();
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
         SqlCommand cmd;
-        public MainMenuForm(int userId = 0)
+
+        string currentUser = "";
+        public MainMenuForm()
         {
             InitializeComponent();
-            _userId = userId;
         }
 
         private void mainMenu_Load(object sender, EventArgs e)
@@ -45,7 +38,7 @@ namespace HotelReservation
 
         private void btnSearchRooms_Click(object sender, EventArgs e)
         {
-            BookingDetailsForm bd = new BookingDetailsForm(_userId);
+            BookingDetailsForm bd = new BookingDetailsForm();
             bd.Show();
             this.Hide();
         }
