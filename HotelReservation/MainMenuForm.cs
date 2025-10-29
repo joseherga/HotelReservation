@@ -42,5 +42,16 @@ namespace HotelReservation
             bd.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        { 
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+                this.Hide();
+            }
+        }
     }
 }
