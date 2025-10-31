@@ -53,5 +53,10 @@ namespace HotelReservation
                 this.Hide();
             }
         }
+
+        private void btnManageRooms_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -16,5 +16,30 @@ namespace HotelReservation
         {
             InitializeComponent();
         }
+
+        private void btnBrowseRooms_Click(object sender, EventArgs e)
+        {
+            BrowseRooms browseForm = new BrowseRooms();
+            browseForm.Show();
+            this.Hide();
+        }
+
+        private void btnBookNow_Click(object sender, EventArgs e)
+        {
+            BookingDetailsForm booking = new BookingDetailsForm();
+            booking.Show();
+            this.Hide();
+        }
+
+        private void btnUserLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                LoginForm login = new LoginForm();
+                login.Show();
+                this.Close();
+            }
+        }
     }
 }

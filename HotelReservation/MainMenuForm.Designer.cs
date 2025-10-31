@@ -128,9 +128,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HotelReservation.Properties.Resources.viewbutton;
-            this.pictureBox2.Location = new System.Drawing.Point(68, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(85, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(89, 47);
+            this.pictureBox2.Size = new System.Drawing.Size(59, 47);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -165,6 +165,7 @@
             this.btnManageRooms.TabIndex = 1;
             this.btnManageRooms.Text = "Manage Rooms";
             this.btnManageRooms.UseVisualStyleBackColor = true;
+            this.btnManageRooms.Click += new System.EventHandler(this.btnManageRooms_Click);
             // 
             // panel4
             // 
