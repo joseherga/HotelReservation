@@ -41,5 +41,12 @@ namespace HotelReservation
                 this.Close();
             }
         }
+
+        private void btnMyReservation_Click(object sender, EventArgs e)
+        {
+            ViewReservationsForm vr = new ViewReservationsForm(Session.CurrentUser.Role);
+            vr.Show();
+            this.Hide();
+        }
     }
 }

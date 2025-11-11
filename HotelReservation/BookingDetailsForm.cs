@@ -23,10 +23,26 @@ namespace HotelReservation
                 txtFullName.Text = Session.CurrentUser.FullName;
                 txtEmail.Text = Session.CurrentUser.Email;
                 txtPhone.Text = Session.CurrentUser.Phone;
+
+                if (Session.CurrentUser.Role == "Admin")
+                {
+                    txtFullName.ReadOnly = false;
+                    txtEmail.ReadOnly = false;
+                    txtPhone.ReadOnly = false;
+                    btnProceed.Text = "Create Booking (Admin)";
+                }
+                else
+                {
+                    txtFullName.ReadOnly = true;
+                    txtEmail.ReadOnly = true;
+                    txtPhone.ReadOnly = true;
+                }
             }
             else
             {
                 MessageBox.Show("No user is currently logged in.");
+                this.Close();
+                return;
             }
 
             LoadRoomData();
@@ -82,8 +98,16 @@ namespace HotelReservation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            MainMenuForm mm = new MainMenuForm();
-            mm.Show();
+            if (Session.CurrentUser.Role == "Admin")
+            {
+                MainMenuForm adminMenu = new MainMenuForm();
+                adminMenu.Show();
+            }
+            else
+            {
+                UserDashboard userDash = new UserDashboard();
+                userDash.Show();
+            }
             this.Hide();
         }
 
@@ -104,12 +128,22 @@ namespace HotelReservation
                 return;
             }
 
-            //CheckRoomAvailability(checkIn, checkOut);
-
             PaymentScreenForm ps = new PaymentScreenForm();
+
+            int guests = Convert.ToInt32(cbGuests.Text);
+
+            ps.FullName = Session.CurrentUser.FullName;
+            ps.RoomType = cbRoomType.Text;
+            ps.Guest = Convert.ToInt32(cbGuests.SelectedItem.ToString());
+            ps.checkIn = dtCheckIn.Value;
+            ps.checkOut = dtCheckOut.Value;
+
+            decimal rate;
+            decimal.TryParse(txtRate.Text, out rate);
+            ps.Rate = rate;
+
             ps.Show();
             this.Hide();
-
         }
     }
 }

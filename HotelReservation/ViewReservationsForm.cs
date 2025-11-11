@@ -1,36 +1,141 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelReservation
 {
     public partial class ViewReservationsForm : Form
     {
-        static CallDatabase callDatabase = new CallDatabase();
-        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
-        SqlCommand cmd;
-        public ViewReservationsForm(string currentUser )
+        private static readonly CallDatabase callDatabase = new CallDatabase();
+        private readonly SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+
+        public ViewReservationsForm(string role)
         {
             InitializeComponent();
         }
 
         private void ViewReservationsForm_Load(object sender, EventArgs e)
         {
+            bool isAdmin = string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase);
+            btnDelete.Visible = isAdmin;
+            btnDelete.Enabled = isAdmin;
 
+            LoadReservations();
+        }
+
+        private void LoadReservations()
+        {
+            try
+            {
+                con.Open();
+                string query;
+                SqlDataAdapter adapter;
+
+                if (string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = @"SELECT ReservationID, FullName, Guest, RoomType, CheckIn, CheckOut, Rate, 
+                                     TotalAmount, BookingDate 
+                              FROM Reservations";
+                    adapter = new SqlDataAdapter(query, con);
+                }
+                else
+                {
+                    query = @"SELECT ReservationID, FullName, Guest, RoomType, CheckIn, CheckOut, Rate, 
+                                     TotalAmount, BookingDate 
+                              FROM Reservations 
+                              WHERE FullName = @FullName";
+                    adapter = new SqlDataAdapter(query, con);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FullName", Session.CurrentUser.FullName);
+                }
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dgvRegistrations.DataSource = dt;
+                dgvRegistrations.ReadOnly = true;
+                dgvRegistrations.AllowUserToAddRows = false;
+                dgvRegistrations.AllowUserToDeleteRows = false;
+                dgvRegistrations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvRegistrations.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading reservations: {ex.Message}",
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvRegistrations.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a reservation to delete.",
+                    "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int reservationID = Convert.ToInt32(dgvRegistrations.SelectedRows[0].Cells["ReservationID"].Value);
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to delete this reservation?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
+                    {
+                        con.Open();
+
+                        string query = "DELETE FROM Reservations WHERE ReservationID = @ReservationID";
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@ReservationID", reservationID);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Reservation deleted successfully.",
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadReservations();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to delete the reservation. It may no longer exist.",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting reservation: " + ex.Message,
+                        "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            MainMenuForm mm = new MainMenuForm();
-            mm.Show();
             this.Hide();
+
+            if (string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase))
+            {
+                var adminMenu = new MainMenuForm();
+                adminMenu.Show();
+            }
+            else
+            {
+                var userDashboard = new UserDashboard();
+                userDashboard.Show();
+            }
         }
     }
 }

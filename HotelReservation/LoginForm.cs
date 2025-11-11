@@ -7,17 +7,12 @@ namespace HotelReservation
 {
     public partial class LoginForm : Form
     {
-        static CallDatabase callDatabase = new CallDatabase();
-        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+        static CallDatabase cd = new CallDatabase();
+        SqlConnection con = new SqlConnection(cd.GetDatabasePath());
         SqlCommand cmd;
         public LoginForm()
         {
             InitializeComponent();
-        }
-
-        private void login_Load(object sender, EventArgs e)
-        {
-
         }
 
         public static class CurrentUser
@@ -26,6 +21,7 @@ namespace HotelReservation
             public static string FullName;
             public static string Email;
             public static string Phone;
+            public static string Role;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -52,7 +48,6 @@ namespace HotelReservation
             {
                 con.Open();
 
-                // Check credentials
                 using (SqlCommand cmd = new SqlCommand("SELECT UserID FROM UserInfo WHERE Username=@Username AND Password=@Password", con))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
@@ -65,7 +60,6 @@ namespace HotelReservation
 
                 if (userId > 0)
                 {
-                    // Get user details
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM UserInfo WHERE UserID=@UserID", con))
                     {
                         cmd.Parameters.AddWithValue("@UserID", userId);
@@ -73,17 +67,34 @@ namespace HotelReservation
 
                         if (reader.Read())
                         {
-                            // Set global current user
                             Session.CurrentUser = new User
                             {
                                 UserID = userId,
                                 FullName = reader["FullName"].ToString(),
                                 Email = reader["Email"].ToString(),
-                                Phone = reader["Phone"].ToString()
+                                Phone = reader["Phone"].ToString(),
+                                Role = reader["UserType"].ToString()
                             };
                         }
 
                         reader.Close();
+                        con.Close();
+
+                        MessageBox.Show($"Welcome back, {Session.CurrentUser.FullName}!", "Login Successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (Session.CurrentUser.Role == "Admin")
+                        {
+                            MainMenuForm admin = new MainMenuForm();
+                            admin.Show();
+                        }
+                        else
+                        {
+                            UserDashboard user = new UserDashboard();
+                            user.Show();
+                        }
+
+                        this.Hide();
                     }
                 }
                 else
@@ -99,10 +110,6 @@ namespace HotelReservation
             {
                 if (con.State == ConnectionState.Open) con.Close();
             }
-
-            MainMenuForm mm = new MainMenuForm();
-            mm.Show();
-            this.Hide();
         }
 
         private void chckBackShowPass_CheckedChanged(object sender, EventArgs e)
