@@ -1,0 +1,50 @@
+CREATE Database hotel_db;
+
+USE hotel_db
+
+CREATE TABLE [dbo].[UserInfo] (
+    [UserID]     INT            IDENTITY (1, 1) NOT NULL,
+    [FullName]   NVARCHAR (100) NOT NULL,
+    [Phone]      NVARCHAR (100) NOT NULL,
+    [Email]      NVARCHAR (100) NOT NULL,
+    [Username]   NVARCHAR (50)  NOT NULL,
+    [Password]   NVARCHAR (255) NOT NULL,
+    [UserType]   NVARCHAR (50)  DEFAULT ('Customer') NOT NULL,
+    [FirstName]  NVARCHAR (50)  NULL,
+    [MiddleName] NVARCHAR (50)  NULL,
+    [Surname]    NVARCHAR (50)  NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC),
+    UNIQUE NONCLUSTERED ([Email] ASC),
+    UNIQUE NONCLUSTERED ([Username] ASC)
+);
+
+FullName = $"{reader["FirstName"]} {reader["MiddleName"]} {reader["Surname"]}".Replace("  ", " ").Trim(),
+
+
+CREATE TABLE [dbo].[Reservations] (
+    [ReservationID] INT             IDENTITY (1, 1) NOT NULL,
+    [FullName]      NVARCHAR (100)  NOT NULL,
+    [Guest]         INT             NOT NULL,
+    [RoomType]      NVARCHAR (50)   NOT NULL,
+    [CheckIn]       DATE            NOT NULL,
+    [CheckOut]      DATE            NOT NULL,
+    [Rate]          DECIMAL (10, 2) NOT NULL,
+    [TotalAmount]   AS              (datediff(day,[CheckIn],[CheckOut])*[Rate]) PERSISTED,
+    [BookingDate]   DATETIME        DEFAULT (getdate()) NULL,
+    PRIMARY KEY CLUSTERED ([ReservationID] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[Rooms] (
+    [RoomID]   INT             IDENTITY (1, 1) NOT NULL,
+    [RoomType] NVARCHAR (100)  NULL,
+    [Rate]     DECIMAL (10, 2) NULL,
+    PRIMARY KEY CLUSTERED ([RoomID] ASC)
+);
+
+INSERT INTO Rooms (RoomType, Rate) VALUES
+('Standard Room', 1500.00),
+('Deluxe Room', 2500.00),
+('Suite Room', 4000.00);
+
