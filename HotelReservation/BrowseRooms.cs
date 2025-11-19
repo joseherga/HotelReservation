@@ -21,7 +21,6 @@ namespace HotelReservation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             UserDashboard userDash = new UserDashboard();
-            userDash.Show();
             this.Close();
         }
 

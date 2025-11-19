@@ -9,6 +9,7 @@ namespace HotelReservation
     {
         static CallDatabase callDatabase = new CallDatabase();
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+
         public BookingDetailsForm()
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace HotelReservation
 
             LoadRoomData();
             LoadGuestOptions(4);
+            this.ControlBox = false;
         }
 
         private void LoadRoomData()
@@ -101,14 +103,12 @@ namespace HotelReservation
             if (Session.CurrentUser.Role == "Admin")
             {
                 MainMenuForm adminMenu = new MainMenuForm();
-                adminMenu.Show();
             }
             else
             {
                 UserDashboard userDash = new UserDashboard();
-                userDash.Show();
             }
-            this.Hide();
+            this.Close();
         }
 
         private void btnProceed_Click(object sender, EventArgs e)
@@ -130,8 +130,6 @@ namespace HotelReservation
 
             PaymentScreenForm ps = new PaymentScreenForm();
 
-            int guests = Convert.ToInt32(cbGuests.Text);
-
             ps.FullName = Session.CurrentUser.FullName;
             ps.RoomType = cbRoomType.Text;
             ps.Guest = Convert.ToInt32(cbGuests.SelectedItem.ToString());
@@ -143,7 +141,7 @@ namespace HotelReservation
             ps.Rate = rate;
 
             ps.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

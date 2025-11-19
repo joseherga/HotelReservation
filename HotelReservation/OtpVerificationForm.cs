@@ -9,6 +9,7 @@ namespace HotelReservation
     {
         private string expectedOTP;
         private readonly string recipientEmail;
+        private DateTime otpGeneratedTime;
 
         public OTPVerificationForm()
         {
@@ -19,11 +20,11 @@ namespace HotelReservation
         {
             expectedOTP = otp ?? string.Empty;
             recipientEmail = email ?? string.Empty;
+            otpGeneratedTime = DateTime.Now; // track expiry
         }
 
         private void OTPVerificationForm_Load(object sender, EventArgs e)
         {
-            // Hook OTP input events
             txtOTP1.TextChanged += OTP_TextChanged;
             txtOTP2.TextChanged += OTP_TextChanged;
             txtOTP3.TextChanged += OTP_TextChanged;
@@ -66,11 +67,19 @@ namespace HotelReservation
                 return;
             }
 
+            // Expiry check (5 minutes)
+            if ((DateTime.Now - otpGeneratedTime).TotalMinutes > 5)
+            {
+                MessageBox.Show("OTP has expired. Please request a new one.",
+                    "Expired", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (enteredCode == expectedOTP)
             {
                 MessageBox.Show("OTP verified successfully!",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Tag = "Verified"; // Signal success back to SignUpForm
+                this.Tag = "Verified";
                 this.Close();
             }
             else
@@ -82,18 +91,18 @@ namespace HotelReservation
 
         private void lnkResend_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Generate a new OTP
             expectedOTP = new Random().Next(100000, 999999).ToString();
+            otpGeneratedTime = DateTime.Now; // reset expiry
 
             try
             {
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("yelyah.pmore.1988@gmail.com", "hmlr xgmk nhyt ehph");
+                    smtp.Credentials = new NetworkCredential("ByteLodge.sup@gmail.com", "tpak deuz wmhy nugl");
                     smtp.EnableSsl = true;
 
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("yelyah.pmore.1988@gmail.com", "Hotel Reservation System");
+                    mail.From = new MailAddress("ByteLodge150@gmail.com", "Hotel Reservation System");
                     mail.To.Add(recipientEmail);
                     mail.Subject = "Your New OTP Code";
                     mail.Body = $"Your new OTP code is: {expectedOTP}\n\nThis code will expire in 5 minutes.";
@@ -111,7 +120,6 @@ namespace HotelReservation
                 return;
             }
 
-            // Clear all text boxes
             txtOTP1.Clear();
             txtOTP2.Clear();
             txtOTP3.Clear();

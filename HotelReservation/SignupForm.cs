@@ -2,6 +2,8 @@
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace HotelReservation
@@ -12,7 +14,10 @@ namespace HotelReservation
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
         SqlCommand cmd;
 
-        LoginForm lg = new LoginForm();
+        UserDashboard ud = new UserDashboard();
+
+        private const string SystemEmail = "ByteLodge.sup@gmail.com";
+        private const string SystemPassword = "tpak deuz wmhy nugl";
 
         public SignupForm()
         {
@@ -33,29 +38,52 @@ namespace HotelReservation
                 string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(email))
             {
-                MessageBox.Show("Please fill in all required fields, including email.", "Registration Failed",
+                MessageBox.Show("Please fill in all required fields.", "Registration Failed",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string fullName = $"{firstName} {middleName} {surname}".Replace("  ", " ").Trim();
 
+            // Check duplicates
+            try
+            {
+                con.Open();
+                string checkQuery = "SELECT COUNT(*) FROM UserInfo WHERE Email=@Email OR Username=@Username";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, con);
+                checkCmd.Parameters.AddWithValue("@Email", email);
+                checkCmd.Parameters.AddWithValue("@Username", username);
+                int exists = (int)checkCmd.ExecuteScalar();
+                if (exists > 0)
+                {
+                    MessageBox.Show("Email or Username already exists.", "Registration Failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking duplicates: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+
             // Generate OTP and send email
             string otpCode = new Random().Next(100000, 999999).ToString();
-            bool otpSent = SendOTPEmail(email, otpCode);
+            bool otpSent = SendOTPEmail(SystemEmail, SystemPassword, email, otpCode);
 
             if (!otpSent)
             {
-                MessageBox.Show("Failed to send OTP. Please check your email and try again.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to send OTP.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Show OTP verification form
             OTPVerificationForm otpForm = new OTPVerificationForm(otpCode, email);
             otpForm.ShowDialog();
 
-            // Proceed only if OTP was verified
             if (otpForm.Tag != null && otpForm.Tag.ToString() == "Verified")
             {
                 try
@@ -73,13 +101,21 @@ namespace HotelReservation
                     cmd.Parameters.AddWithValue("@Phone", phone);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Password", HashPassword(password));
                     cmd.Parameters.AddWithValue("@UserType", "Customer");
 
                     cmd.ExecuteNonQuery();
 
+                    Session.CurrentUser = new User
+                    {
+                        FullName = fullName,
+                        Email = email,
+                        Phone = phone,
+                        Role = "Customer"
+                    };
+
                     MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lg.Show();
+                    ud.Show();
                     this.Hide();
                 }
                 catch (Exception ex)
@@ -93,32 +129,35 @@ namespace HotelReservation
             }
             else
             {
-                MessageBox.Show("OTP verification failed or was cancelled.", "Verification Failed",
+                MessageBox.Show("OTP verification failed.", "Verification Failed",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private bool SendOTPEmail(string recipientEmail, string otpCode)
+        private bool SendOTPEmail(string senderEmail, string senderPassword, string recipientEmail, string otpCode)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(recipientEmail))
-                    throw new ArgumentNullException(nameof(recipientEmail), "Email address cannot be empty.");
-
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("yelyah.pmore.1988@gmail.com", "hmlr xgmk nhyt ehph");
+                    smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
                     smtp.EnableSsl = true;
 
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("yelyah.pmore.1988@gmail.com", "Hotel Reservation System");
+                    mail.From = new MailAddress(senderEmail, "Byte Lodge | Hotel Reservation System");
                     mail.To.Add(recipientEmail);
-                    mail.Subject = "Your OTP Code";
-                    mail.Body = $"Your OTP code is: {otpCode}\n\nThis code will expire in 5 minutes.";
+                    mail.Subject = "ByteLodge OTP Verification";
+                    mail.Body = $"Hello,\n\n" +
+                                $"Thank you for signing up with ByteLodge! 🎉\n" +
+                                $"Your One-Time Password (OTP) is: {otpCode}\n\n" +
+                                $"Please enter this code in the app to complete your registration.\n" +
+                                $"Note: This code will expire in 5 minutes.\n\n" +
+                                $"If you didn’t request this, you can safely ignore this email.\n\n" +
+                                $"Best regards,\n" +
+                                $"ByteLodge Hotel Reservation Team";
 
                     smtp.Send(mail);
                 }
-
                 return true;
             }
             catch (Exception ex)
@@ -128,16 +167,20 @@ namespace HotelReservation
             }
         }
 
-        private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private string HashPassword(string password)
         {
-            lg.Show();
-            this.Hide();
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            lg.Show();
-            this.Hide();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
         }
     }
 }
