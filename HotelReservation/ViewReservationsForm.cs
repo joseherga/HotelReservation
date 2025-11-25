@@ -22,6 +22,7 @@ namespace HotelReservation
             btnDelete.Enabled = isAdmin;
 
             LoadReservations();
+            this.ControlBox = false;
         }
 
         private void LoadReservations()
@@ -69,6 +70,7 @@ namespace HotelReservation
                 con.Close();
             }
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dgvRegistrations.SelectedRows.Count == 0)
@@ -124,17 +126,75 @@ namespace HotelReservation
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             if (string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase))
             {
                 var adminMenu = new MainMenuForm();
-                adminMenu.Show();
             }
             else
             {
                 var userDashboard = new UserDashboard();
-                userDashboard.Show();
+            }
+            this.Close();
+        }
+
+        private void btnRefresh_Click_1(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            LoadReservations();
+            dgvRegistrations.ClearSelection();
+        }
+
+
+        private void txtSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Please enter a search keyword.", "Search", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                con.Open();
+                string query;
+                SqlDataAdapter adapter;
+
+                if (string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase))
+                {
+                    query = @"SELECT ReservationID, FullName, Guest, RoomType, CheckIn, CheckOut, Rate, 
+                                     TotalAmount, BookingDate 
+                              FROM Reservations 
+                              WHERE FullName LIKE @Keyword OR RoomType LIKE @Keyword";
+                    adapter = new SqlDataAdapter(query, con);
+                }
+                else
+                {
+                    query = @"SELECT ReservationID, FullName, Guest, RoomType, CheckIn, CheckOut, Rate, 
+                                     TotalAmount, BookingDate 
+                              FROM Reservations 
+                              WHERE FullName = @FullName AND 
+                                    (FullName LIKE @Keyword OR RoomType LIKE @Keyword)";
+                    adapter = new SqlDataAdapter(query, con);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FullName", Session.CurrentUser.FullName);
+                }
+
+                adapter.SelectCommand.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                dgvRegistrations.DataSource = dt;
+                dgvRegistrations.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error during search: " + ex.Message, "Search Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                con.Close();
             }
         }
     }

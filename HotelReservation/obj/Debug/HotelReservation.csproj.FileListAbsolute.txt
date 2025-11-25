@@ -23,3 +23,34 @@ C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-ma
 C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\HotelReservation\bin\Debug\itextsharp.xml
 C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\HotelReservation\obj\Debug\HotelRes.16BBCD16.Up2Date
 C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\HotelReservation\obj\Debug\HotelReservation.OTPVerificationForm.resources
+C:\FinalsHotelSys\HotelReservation-master\HotelReservation\obj\Debug\HotelReservation.csproj.AssemblyReference.cache
+C:\FinalsHotelSys\HotelReservation-master\HotelReservation\obj\Debug\HotelReservation.exe.config
+C:\FinalsHotelSys\HotelReservation-master\HotelReservation\obj\Debug\HotelReservation.exe
+C:\FinalsHotelSys\HotelReservation-master\HotelReservation\obj\Debug\HotelReservation.pdb
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.csproj.AssemblyReference.cache
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.BookingDetailsForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.BrowseRooms.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.LoginForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.MainMenuForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.ManageRoomForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.OTPVerificationForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.PaymentScreenForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.SignupForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.Properties.Resources.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.UserDashboard.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.ViewReservationsForm.resources
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.csproj.GenerateResource.cache
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.csproj.CoreCompileInputs.cache
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\HotelReservation.exe.config
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\HotelReservation.exe
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\HotelReservation.pdb
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\itextsharp.dll
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\ReaLTaiizor.dll
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\itextsharp.xml
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\bin\Debug\ReaLTaiizor.xml
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelRes.16BBCD16.Up2Date
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.exe
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.pdb
+C:\Users\Toni\Downloads\HotelReservation-master1.3\HotelReservation\obj\Debug\HotelReservation.exe.config
