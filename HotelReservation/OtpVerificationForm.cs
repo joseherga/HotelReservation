@@ -53,7 +53,7 @@ namespace HotelReservation
         private string GetEnteredOTP()
         {
             return txtOTP1.Text + txtOTP2.Text + txtOTP3.Text +
-                   txtOTP6.Text + txtOTP5.Text + txtOTP4.Text;
+                   txtOTP4.Text + txtOTP5.Text + txtOTP6.Text;
         }
 
         private void btnVerify_Click(object sender, EventArgs e)

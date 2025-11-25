@@ -51,9 +51,33 @@ namespace HotelReservation
             this.ControlBox = false;
         }
 
+        private bool IsRoomAvailable(int roomId, DateTime checkIn, DateTime checkOut)
+        {
+            using (SqlConnection conn = new SqlConnection(callDatabase.GetDatabasePath()))
+            {
+                conn.Open();
+                string query = @"
+            SELECT COUNT(*)
+            FROM Reservations
+            WHERE RoomID = @RoomID
+            AND (
+                    @CheckIn < CheckOut
+                AND @CheckOut > CheckIn
+                );";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@RoomID", roomId);
+                cmd.Parameters.AddWithValue("@CheckIn", checkIn);
+                cmd.Parameters.AddWithValue("@CheckOut", checkOut);
+
+                int count = (int)cmd.ExecuteScalar();
+                return count == 0;
+            }
+        }
+
         private void LoadRoomData()
         {
-            string query = "SELECT RoomType, Rate FROM Rooms";
+            string query = "SELECT RoomID, RoomType, Rate FROM Rooms";
             using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
             using (SqlDataAdapter da = new SqlDataAdapter(query, con))
             {
@@ -81,11 +105,11 @@ namespace HotelReservation
 
             var row = dgRooms.Rows[e.RowIndex];
 
-            string roomType = dgRooms.Columns.Contains("RoomType") ? row.Cells["RoomType"]?.Value?.ToString() : row.Cells[0]?.Value?.ToString();
-            string rate = dgRooms.Columns.Contains("Rate") ? row.Cells["Rate"]?.Value?.ToString() : row.Cells[1]?.Value?.ToString();
+            int roomId = Convert.ToInt32(row.Cells["RoomID"].Value);
+            cbRoomType.Tag = roomId;   
 
-            cbRoomType.Text = roomType ?? "";
-            txtRate.Text = rate ?? "";
+            cbRoomType.Text = row.Cells["RoomType"].Value.ToString();
+            txtRate.Text = row.Cells["Rate"].Value.ToString();
         }
 
         private void LoadGuestOptions(int maxGuests)
@@ -118,27 +142,45 @@ namespace HotelReservation
 
             if (checkIn < DateTime.Today)
             {
-                MessageBox.Show("Check-in date must be today or a future date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Check-in date must be today or a future date.", "Invalid Date",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (checkOut <= checkIn)
             {
-                MessageBox.Show("Check-out date must be after the check-in date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Check-out date must be after the check-in date.", "Invalid Date",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cbRoomType.Tag == null)
+            {
+                MessageBox.Show("Please select a room.");
+                return;
+            }
+
+            int roomId = Convert.ToInt32(cbRoomType.Tag);
+
+            if (!IsRoomAvailable(roomId, checkIn, checkOut))
+            {
+                MessageBox.Show("This room is already booked for the selected dates.",
+                                "Room Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             PaymentScreenForm ps = new PaymentScreenForm();
-
             ps.FullName = Session.CurrentUser.FullName;
             ps.RoomType = cbRoomType.Text;
             ps.Guest = Convert.ToInt32(cbGuests.SelectedItem.ToString());
-            ps.checkIn = dtCheckIn.Value;
-            ps.checkOut = dtCheckOut.Value;
+            ps.checkIn = checkIn;
+            ps.checkOut = checkOut;
 
             decimal rate;
             decimal.TryParse(txtRate.Text, out rate);
             ps.Rate = rate;
+
+            ps.RoomID = roomId;
 
             ps.Show();
             this.Close();

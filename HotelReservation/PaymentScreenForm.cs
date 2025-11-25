@@ -14,6 +14,8 @@ namespace HotelReservation
         public DateTime checkOut;
         public decimal Rate;
 
+        public int RoomID;
+
         public PaymentScreenForm()
         {
             InitializeComponent();
