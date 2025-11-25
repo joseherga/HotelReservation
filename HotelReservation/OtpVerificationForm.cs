@@ -28,9 +28,9 @@ namespace HotelReservation
             txtOTP1.TextChanged += OTP_TextChanged;
             txtOTP2.TextChanged += OTP_TextChanged;
             txtOTP3.TextChanged += OTP_TextChanged;
-            txtOTP4.TextChanged += OTP_TextChanged;
-            txtOTP5.TextChanged += OTP_TextChanged;
             txtOTP6.TextChanged += OTP_TextChanged;
+            txtOTP5.TextChanged += OTP_TextChanged;
+            txtOTP4.TextChanged += OTP_TextChanged;
 
             if (!string.IsNullOrEmpty(recipientEmail))
             {
@@ -53,7 +53,7 @@ namespace HotelReservation
         private string GetEnteredOTP()
         {
             return txtOTP1.Text + txtOTP2.Text + txtOTP3.Text +
-                   txtOTP4.Text + txtOTP5.Text + txtOTP6.Text;
+                   txtOTP6.Text + txtOTP5.Text + txtOTP4.Text;
         }
 
         private void btnVerify_Click(object sender, EventArgs e)
@@ -123,9 +123,9 @@ namespace HotelReservation
             txtOTP1.Clear();
             txtOTP2.Clear();
             txtOTP3.Clear();
-            txtOTP4.Clear();
-            txtOTP5.Clear();
             txtOTP6.Clear();
+            txtOTP5.Clear();
+            txtOTP4.Clear();
 
             txtOTP1.Focus();
         }
