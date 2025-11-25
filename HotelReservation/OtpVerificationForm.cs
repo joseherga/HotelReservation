@@ -27,9 +27,9 @@ namespace HotelReservation
             txtOTP1.TextChanged += OTP_TextChanged;
             txtOTP2.TextChanged += OTP_TextChanged;
             txtOTP3.TextChanged += OTP_TextChanged;
-            txtOTP4.TextChanged += OTP_TextChanged;
-            txtOTP5.TextChanged += OTP_TextChanged;
             txtOTP6.TextChanged += OTP_TextChanged;
+            txtOTP5.TextChanged += OTP_TextChanged;
+            txtOTP4.TextChanged += OTP_TextChanged;
 
             if (!string.IsNullOrEmpty(recipientEmail))
             {
@@ -115,11 +115,16 @@ namespace HotelReservation
             txtOTP1.Clear();
             txtOTP2.Clear();
             txtOTP3.Clear();
-            txtOTP4.Clear();
-            txtOTP5.Clear();
             txtOTP6.Clear();
+            txtOTP5.Clear();
+            txtOTP4.Clear();
 
             txtOTP1.Focus();
+        }
+
+        private void txtOTP4_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }
