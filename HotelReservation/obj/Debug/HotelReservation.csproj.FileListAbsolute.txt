@@ -61,7 +61,6 @@ D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\BouncyCast
 D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\itextsharp.xml
 D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\ReaLTaiizor.xml
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.csproj.AssemblyReference.cache
-D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.exe.config
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.BookingDetailsForm.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.BrowseRooms.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.LoginForm.resources

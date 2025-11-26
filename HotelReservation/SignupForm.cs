@@ -182,5 +182,12 @@ namespace HotelReservation
             loginForm.Show();
             this.Close();
         }
+
+        private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
+        }
     }
 }
