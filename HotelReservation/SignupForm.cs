@@ -12,12 +12,9 @@ namespace HotelReservation
     {
         static CallDatabase callDatabase = new CallDatabase();
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
-        SqlCommand cmd;
-
-        UserDashboard ud = new UserDashboard();
 
         private const string SystemEmail = "ByteLodge.sup@gmail.com";
-        private const string SystemPassword = "tpak deuz wmhy nugl";
+        private const string SystemPassword = "tpak deuz wmhy nugl"; // app-specific password
 
         public SignupForm()
         {
@@ -34,6 +31,7 @@ namespace HotelReservation
             string username = txtUser.Text.Trim();
             string password = txtPass.Text.Trim();
 
+            // Validate required fields
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) ||
                 string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(email))
@@ -45,39 +43,17 @@ namespace HotelReservation
 
             string fullName = $"{firstName} {middleName} {surname}".Replace("  ", " ").Trim();
 
-            // Check duplicates
-            try
-            {
-                con.Open();
-                string checkQuery = "SELECT COUNT(*) FROM UserInfo WHERE Email=@Email OR Username=@Username";
-                SqlCommand checkCmd = new SqlCommand(checkQuery, con);
-                checkCmd.Parameters.AddWithValue("@Email", email);
-                checkCmd.Parameters.AddWithValue("@Username", username);
-                int exists = (int)checkCmd.ExecuteScalar();
-                if (exists > 0)
-                {
-                    MessageBox.Show("Email or Username already exists.", "Registration Failed",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error checking duplicates: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // Check if username/email already exists
+            if (IsDuplicateUser(username, email))
                 return;
-            }
-            finally
-            {
-                con.Close();
-            }
 
-            // Generate OTP and send email
+            // Send OTP to verify email
             string otpCode = new Random().Next(100000, 999999).ToString();
             bool otpSent = SendOTPEmail(SystemEmail, SystemPassword, email, otpCode);
 
             if (!otpSent)
             {
-                MessageBox.Show("Failed to send OTP.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to send OTP. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -86,14 +62,59 @@ namespace HotelReservation
 
             if (otpForm.Tag != null && otpForm.Tag.ToString() == "Verified")
             {
-                try
-                {
-                    con.Open();
-                    string query = @"INSERT INTO UserInfo 
-                                    (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType) 
-                                    VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
+                RegisterUser(firstName, middleName, surname, fullName, phone, email, username, password);
+            }
+            else
+            {
+                MessageBox.Show("OTP verification failed.", "Verification Failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
-                    cmd = new SqlCommand(query, con);
+        private bool IsDuplicateUser(string username, string email)
+        {
+            try
+            {
+                con.Open();
+                string checkQuery = "SELECT COUNT(*) FROM UserInfo WHERE Email=@Email OR Username=@Username";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@Email", email);
+                    checkCmd.Parameters.AddWithValue("@Username", username);
+                    int exists = (int)checkCmd.ExecuteScalar();
+                    if (exists > 0)
+                    {
+                        MessageBox.Show("Email or Username already exists.", "Registration Failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking duplicates: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return false;
+        }
+
+        private void RegisterUser(string firstName, string middleName, string surname, string fullName,
+            string phone, string email, string username, string password)
+        {
+            try
+            {
+                con.Open();
+                string query = @"INSERT INTO UserInfo 
+                                (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType) 
+                                VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
                     cmd.Parameters.AddWithValue("@MiddleName", middleName);
                     cmd.Parameters.AddWithValue("@Surname", surname);
@@ -101,36 +122,34 @@ namespace HotelReservation
                     cmd.Parameters.AddWithValue("@Phone", phone);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(password));
+                    cmd.Parameters.AddWithValue("@Password", HashPassword(password)); // hash password
                     cmd.Parameters.AddWithValue("@UserType", "Customer");
 
                     cmd.ExecuteNonQuery();
+                }
 
-                    Session.CurrentUser = new User
-                    {
-                        FullName = fullName,
-                        Email = email,
-                        Phone = phone,
-                        Role = "Customer"
-                    };
+                // Set session for the logged-in user
+                Session.CurrentUser = new User
+                {
+                    FullName = fullName,
+                    Email = email,
+                    Phone = phone,
+                    Role = "Customer"
+                };
 
-                    MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ud.Show();
-                    this.Hide();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error during registration: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    con.Close();
-                }
+                MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Redirect to user dashboard
+                new UserDashboard().Show();
+                this.Hide();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("OTP verification failed.", "Verification Failed",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error during registration: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
@@ -143,19 +162,19 @@ namespace HotelReservation
                     smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
                     smtp.EnableSsl = true;
 
-                    MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress(senderEmail, "Byte Lodge | Hotel Reservation System");
-                    mail.To.Add(recipientEmail);
-                    mail.Subject = "ByteLodge OTP Verification";
-                    mail.Body = $"Hello,\n\n" +
-                                $"Thank you for signing up with ByteLodge! 🎉\n" +
-                                $"Your One-Time Password (OTP) is: {otpCode}\n\n" +
-                                $"Please enter this code in the app to complete your registration.\n" +
-                                $"Note: This code will expire in 5 minutes.\n\n" +
-                                $"If you didn’t request this, you can safely ignore this email.\n\n" +
-                                $"Best regards,\n" +
-                                $"ByteLodge Hotel Reservation Team";
+                    MailMessage mail = new MailMessage
+                    {
+                        From = new MailAddress(senderEmail, "Byte Lodge | Hotel Reservation System"),
+                        Subject = "ByteLodge OTP Verification",
+                        Body = $"Hello,\n\nThank you for signing up with ByteLodge! 🎉\n" +
+                               $"Your One-Time Password (OTP) is: {otpCode}\n\n" +
+                               $"Please enter this code in the app to complete your registration.\n" +
+                               $"Note: This code will expire in 5 minutes.\n\n" +
+                               $"If you didn’t request this, you can safely ignore this email.\n\n" +
+                               $"Best regards,\nByteLodge Hotel Reservation Team"
+                    };
 
+                    mail.To.Add(recipientEmail);
                     smtp.Send(mail);
                 }
                 return true;
@@ -178,15 +197,13 @@ namespace HotelReservation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            new LoginForm().Show();
             this.Close();
         }
 
         private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
+            new LoginForm().Show();
             this.Close();
         }
     }

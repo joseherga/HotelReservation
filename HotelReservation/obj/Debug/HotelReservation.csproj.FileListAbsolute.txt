@@ -62,9 +62,7 @@ D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\itextsharp
 D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\ReaLTaiizor.xml
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.csproj.AssemblyReference.cache
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.BookingDetailsForm.resources
-D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.BrowseRooms.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.LoginForm.resources
-D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.MainMenuForm.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.ManageRoomForm.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.OTPVerificationForm.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.PaymentScreenForm.resources
@@ -77,3 +75,4 @@ D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReser
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelRes.16BBCD16.Up2Date
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.exe
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.pdb
+D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.AdminDashboardForm.resources

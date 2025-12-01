@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace HotelReservation
@@ -9,25 +11,16 @@ namespace HotelReservation
     {
         static CallDatabase cd = new CallDatabase();
         SqlConnection con = new SqlConnection(cd.GetDatabasePath());
-        SqlCommand cmd;
+
         public LoginForm()
         {
             InitializeComponent();
         }
 
-        public static class CurrentUser
-        {
-            public static int UserID;
-            public static string FullName;
-            public static string Email;
-            public static string Phone;
-            public static string Role;
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SignupForm CustomerPage = new SignupForm();
-            CustomerPage.Show();
+            SignupForm signup = new SignupForm();
+            signup.Show();
             this.Hide();
         }
 
@@ -42,64 +35,49 @@ namespace HotelReservation
                 return;
             }
 
-            int userId = 0;
+            // Hash the entered password
+            string hashedPassword = HashPassword(password);
 
             try
             {
                 con.Open();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT UserID FROM UserInfo WHERE Username=@Username AND Password=@Password", con))
+                // Check if username and hashed password exist
+                string query = "SELECT * FROM UserInfo WHERE Username=@Username AND Password=@Password";
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
 
-                    object result = cmd.ExecuteScalar();
-                    if (result != null && result != DBNull.Value)
-                        userId = Convert.ToInt32(result);
-                }
-
-                if (userId > 0)
-                {
-                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM UserInfo WHERE UserID=@UserID", con))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@UserID", userId);
-                        SqlDataReader reader = cmd.ExecuteReader();
-
                         if (reader.Read())
                         {
                             Session.CurrentUser = new User
                             {
-                                UserID = userId,
+                                UserID = Convert.ToInt32(reader["UserID"]),
                                 FullName = reader["FullName"].ToString(),
                                 Email = reader["Email"].ToString(),
                                 Phone = reader["Phone"].ToString(),
                                 Role = reader["UserType"].ToString()
                             };
-                        }
 
-                        reader.Close();
-                        con.Close();
+                            MessageBox.Show($"Welcome back, {Session.CurrentUser.FullName}!", "Login Successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        MessageBox.Show($"Welcome back, {Session.CurrentUser.FullName}!", "Login Successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            // Open respective dashboard
+                            if (Session.CurrentUser.Role == "Admin")
+                                new AdminDashboardForm().Show();
+                            else
+                                new UserDashboard().Show();
 
-                        if (Session.CurrentUser.Role == "Admin")
-                        {
-                            MainMenuForm admin = new MainMenuForm();
-                            admin.Show();
+                            this.Hide();
                         }
                         else
                         {
-                            UserDashboard user = new UserDashboard();
-                            user.Show();
+                            MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-                        this.Hide();
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -112,31 +90,18 @@ namespace HotelReservation
             }
         }
 
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
         private void chckBackShowPass_CheckedChanged(object sender, EventArgs e)
         {
-            if (chckBackShowPass.Checked)
-            {
-                txtPass.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                txtPass.UseSystemPasswordChar = true;
-            }
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPass_TextChanged(object sender, EventArgs e)
-        {
-
+            txtPass.UseSystemPasswordChar = !chckBackShowPass.Checked;
         }
     }
 }

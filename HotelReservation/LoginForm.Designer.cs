@@ -96,7 +96,6 @@
             this.txtPass.Size = new System.Drawing.Size(199, 22);
             this.txtPass.TabIndex = 3;
             this.txtPass.UseSystemPasswordChar = true;
-            this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
             // label1
             // 
@@ -186,7 +185,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // chckBackShowPass
             // 
@@ -215,7 +213,6 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "login";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

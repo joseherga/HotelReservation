@@ -1,6 +1,6 @@
 ﻿namespace HotelReservation
 {
-    partial class MainMenuForm
+    partial class AdminDashboardForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardForm));
             this.btnSearchRooms = new System.Windows.Forms.Button();
             this.btnViewReservations = new System.Windows.Forms.Button();
             this.lblWelcome = new System.Windows.Forms.Label();

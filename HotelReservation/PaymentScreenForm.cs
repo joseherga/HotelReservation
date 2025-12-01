@@ -149,7 +149,7 @@ namespace HotelReservation
 
             if (Session.CurrentUser.Role == "Admin")
             {
-                MainMenuForm mm = new MainMenuForm();
+                AdminDashboardForm mm = new AdminDashboardForm();
                 mm.Show();
             }
             else

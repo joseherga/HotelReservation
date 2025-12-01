@@ -128,7 +128,7 @@ namespace HotelReservation
         {
             if (string.Equals(Session.CurrentUser.Role, "admin", StringComparison.OrdinalIgnoreCase))
             {
-                var adminMenu = new MainMenuForm();
+                var adminMenu = new AdminDashboardForm();
             }
             else
             {

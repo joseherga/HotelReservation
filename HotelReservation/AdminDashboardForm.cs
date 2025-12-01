@@ -4,14 +4,14 @@ using System.Windows.Forms;
 
 namespace HotelReservation
 {
-    public partial class MainMenuForm : Form
+    public partial class AdminDashboardForm : Form
     {
         static CallDatabase callDatabase = new CallDatabase();
         SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
         SqlCommand cmd;
 
         string currentUser = "";
-        public MainMenuForm()
+        public AdminDashboardForm()
         {
             InitializeComponent();
         }

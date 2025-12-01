@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelReservation
 {
     public partial class UserDashboard : Form
     {
-        BrowseRooms browseRooms;
         BookingDetailsForm bookingDetails;
         ViewReservationsForm viewReservations;
 
@@ -56,28 +48,6 @@ namespace HotelReservation
             }
         }
 
-        private void btnBrowseRooms_Click(object sender, EventArgs e)
-        {
-            if (browseRooms == null || browseRooms.IsDisposed)
-            {
-                browseRooms = new BrowseRooms();
-                browseRooms.FormClosed += browseRoom_Closed;
-                browseRooms.MdiParent = this;
-                browseRooms.Show();
-            }
-            else
-            {
-                browseRooms.WindowState = FormWindowState.Normal;
-                browseRooms.BringToFront();
-                browseRooms.Activate();
-            }
-        }
-
-        private void browseRoom_Closed(object sender, FormClosedEventArgs e)
-        {
-            browseRooms = null;
-        }
-
         private void btnBookNow_Click(object sender, EventArgs e)
         {
             if (bookingDetails == null || bookingDetails.IsDisposed)
@@ -105,7 +75,7 @@ namespace HotelReservation
         {
             if (viewReservations == null || viewReservations.IsDisposed)
             {
-                viewReservations = new ViewReservationsForm(LoginForm.CurrentUser.Role);
+                viewReservations = new ViewReservationsForm(Session.CurrentUser.Role);
                 viewReservations.FormClosed += viewReservations_Closed;
                 viewReservations.MdiParent = this;
                 viewReservations.Show();
