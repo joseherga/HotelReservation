@@ -13,12 +13,29 @@ namespace HotelReservation
         public DateTime checkIn;
         public DateTime checkOut;
         public decimal Rate;
-
         public int RoomID;
 
-        public PaymentScreenForm()
+        private ViewReservationsForm _viewReservationsForm;
+        private Timer autoCloseTimer;
+        private int countdownSeconds = 10;
+
+        public PaymentScreenForm(ViewReservationsForm viewReservationsForm = null)
         {
             InitializeComponent();
+            _viewReservationsForm = viewReservationsForm;
+
+            // Initialize timer
+            autoCloseTimer = new Timer();
+            autoCloseTimer.Interval = 1000; // tick every second
+            autoCloseTimer.Tick += AutoCloseTimer_Tick;
+
+            // Countdown label is hidden initially
+            lblCountdown.Visible = false; // Add lblCountdown to your form in designer
+        }
+
+        private void PaymentScreenForm_Resize(object sender, EventArgs e)
+        {
+            lblCountdown.Location = new System.Drawing.Point(this.ClientSize.Width - lblCountdown.Width - 10, 10);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -30,135 +47,124 @@ namespace HotelReservation
 
         private void btnPayNow_Click(object sender, EventArgs e)
         {
-            string cardName = txtbxCardName.Text;
-            string cardNumber = txtbxCardNumber.Text;
-            string expiryDate = masktbExpiryDate.Text;
-            string cvv = txtboxCVV.Text;
-
-            if (string.IsNullOrWhiteSpace(cardName) ||
-                string.IsNullOrWhiteSpace(cardNumber) ||
-                string.IsNullOrWhiteSpace(expiryDate) ||
-                string.IsNullOrWhiteSpace(cvv))
+            if (string.IsNullOrWhiteSpace(txtbxCardName.Text) ||
+                string.IsNullOrWhiteSpace(txtbxCardNumber.Text) ||
+                string.IsNullOrWhiteSpace(masktbExpiryDate.Text) ||
+                string.IsNullOrWhiteSpace(txtboxCVV.Text))
             {
                 MessageBox.Show("Please fill in all payment details.", "Incomplete Information",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validates card number (must be 12 digits)
-            if (!System.Text.RegularExpressions.Regex.IsMatch(cardNumber, @"^\d{12}$"))
-            {
-                MessageBox.Show("Card number must be exactly 12 digits and contain only numbers.",
-                    "Invalid Card Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Validates CVV (must be 3 digits)
-            if (!System.Text.RegularExpressions.Regex.IsMatch(cvv, @"^\d{3}$"))
-            {
-                MessageBox.Show("CVV must be exactly 3 digits and contain only numbers.",
-                    "Invalid CVV", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // 4. Validate expiry date
-            // Accepts MM/YY or MM/YYYY
-            DateTime expDate;
-
-            if (!DateTime.TryParse("01/" + expiryDate, out expDate))
-            {
-                MessageBox.Show("Invalid expiry date. Format must be MM/YY or MM/YYYY.",
-                    "Invalid Expiry Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Check if expired
-            if (expDate < DateTime.Now.AddMonths(-1))
-            {
-                MessageBox.Show("Card has expired. Please use a valid card.",
-                    "Expired Card", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-
             MessageBox.Show("Payment Successful! Thank you for your reservation.",
                 "Payment Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            InsertReservation();
+
+            // Show countdown label only after paying
+            countdownSeconds = 10;
+            lblCountdown.Text = $"Returning to dashboard in {countdownSeconds} seconds...";
+            lblCountdown.Visible = true;
+            autoCloseTimer.Start();
         }
 
-        private void RoomDetails_Load(object sender, EventArgs e)
+        private void AutoCloseTimer_Tick(object sender, EventArgs e)
         {
-            int totalNights = (checkOut - checkIn).Days;
-            decimal totalCost = totalNights * Rate;
-            decimal downPayment = totalCost * 0.20m;
+            countdownSeconds--;
+            lblCountdown.Text = $"Returning to dashboard in {countdownSeconds} seconds...";
 
-            lblGuestName.Text = $"Guest: {FullName}";
-            lblRoomType.Text = $"Room Type: {RoomType}";
-            lblGuests.Text = $"Number of Guests: {Guest}";
-            lblRate.Text = $"Rate per Night: {Rate:C}";
-            lblCheckIn.Text = $"Check-In: {checkIn:MMMM dd, yyyy}";
-            lblCheckOut.Text = $"Check-Out: {checkOut:MMMM dd, yyyy}";
-            lblTotalNights.Text = $"Total Nights: {totalNights}";
-            lblDownpayment.Text = $"Downpayment (20%): {downPayment:C}";
-            lblRemainingBalance.Text = $"Remaining Balance (80%): {(totalCost - downPayment):C}";
-            lblTotalCost.Text = $"Total Amount: {totalCost:C}";
+            if (countdownSeconds <= 0)
+            {
+                autoCloseTimer.Stop();
+                CloseAndOpenDashboard();
+            }
         }
 
-        private void prntReceipt_Click(object sender, EventArgs e)
+        private void InsertReservation()
         {
             try
             {
                 var callDatabase = new CallDatabase();
                 using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
                 {
-                    string insert = @"INSERT INTO Reservations 
-                                     (FullName, Guest, RoomType, CheckIn, CheckOut, Rate, BookingDate)
-                                     VALUES (@FullName, @Guest, @RoomType, @CheckIn, @CheckOut, @Rate, @BookingDate)";
+                    con.Open();
 
+                    string checkQuery = @"SELECT COUNT(*) FROM Reservations
+                                          WHERE RoomID = @RoomID
+                                          AND CheckOut > @CheckIn
+                                          AND CheckIn < @CheckOut";
+
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+                    {
+                        checkCmd.Parameters.AddWithValue("@RoomID", RoomID);
+                        checkCmd.Parameters.AddWithValue("@CheckIn", checkIn);
+                        checkCmd.Parameters.AddWithValue("@CheckOut", checkOut);
+
+                        int count = (int)checkCmd.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            MessageBox.Show("This room is already booked for the selected dates.", "Room Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
+                    string insert = @"INSERT INTO Reservations 
+                                      (FullName, Guest, RoomType, CheckIn, CheckOut, Rate, RoomID, UserID)
+                                      VALUES (@FullName, @Guest, @RoomType, @CheckIn, @CheckOut, @Rate, @RoomID, @UserID)";
 
                     using (SqlCommand cmd = new SqlCommand(insert, con))
                     {
-                        int totalNights = (checkOut - checkIn).Days;
-                        decimal totalAmount = totalNights * Rate;
-
                         cmd.Parameters.AddWithValue("@FullName", FullName);
                         cmd.Parameters.AddWithValue("@Guest", Guest);
                         cmd.Parameters.AddWithValue("@RoomType", RoomType);
                         cmd.Parameters.AddWithValue("@CheckIn", checkIn);
                         cmd.Parameters.AddWithValue("@CheckOut", checkOut);
                         cmd.Parameters.AddWithValue("@Rate", Rate);
-                        cmd.Parameters.AddWithValue("@BookingDate", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                        cmd.Parameters.AddWithValue("@UserID", Session.CurrentUser?.UserID ?? (object)DBNull.Value);
 
-                        con.Open();
                         cmd.ExecuteNonQuery();
                     }
                 }
-
-                string folderPath = @"C:\Receipts";
-                Directory.CreateDirectory(folderPath);
-                string fileName = $"ByteLodge_Receipt_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
-                string filePath = Path.Combine(folderPath, fileName);
-                ReceiptGenerator.CreateReceipt(FullName, RoomType, Guest, checkIn, checkOut, Rate, filePath);
-
-                System.Diagnostics.Process.Start(filePath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to generate receipt or save booking: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving reservation: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
-            if (Session.CurrentUser.Role == "Admin")
+        private void prntReceipt_Click(object sender, EventArgs e)
+        {
+            try
             {
-                AdminDashboardForm mm = new AdminDashboardForm();
-                mm.Show();
+                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    $"Receipt_{FullName}_{DateTime.Now:yyyyMMddHHmmss}.pdf");
+
+                ReceiptGenerator.CreateReceipt(FullName, RoomType, Guest, checkIn, checkOut, Rate, filePath);
+
+                MessageBox.Show($"Receipt saved to {filePath}", "Receipt Printed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Stop timer and go back immediately
+                autoCloseTimer.Stop();
+                CloseAndOpenDashboard();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to print receipt: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CloseAndOpenDashboard()
+        {
+            _viewReservationsForm?.LoadReservations();
+
+            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                new AdminDashboardForm().Show();
             else
-            {
-                UserDashboard userDash = new UserDashboard();
-                userDash.Show();
-            }
+                new UserDashboard().Show();
 
-            this.Hide();
+            this.Close();
         }
     }
 }

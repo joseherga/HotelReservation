@@ -53,9 +53,18 @@ namespace HotelReservation
             if (bookingDetails == null || bookingDetails.IsDisposed)
             {
                 bookingDetails = new BookingDetailsForm();
+
+                // Event when bookingDetails form is closed
                 bookingDetails.FormClosed += bookingDetails_Closed;
-                bookingDetails.MdiParent = this;
-                bookingDetails.Show();
+
+                // Hide the dashboard when booking form opens
+                this.Hide();
+
+                // Show the booking form modally
+                bookingDetails.ShowDialog();
+
+                // After booking form closes, close the dashboard itself
+                this.Close();
             }
             else
             {
@@ -63,8 +72,8 @@ namespace HotelReservation
                 bookingDetails.BringToFront();
                 bookingDetails.Activate();
             }
-
         }
+
 
         private void bookingDetails_Closed(object sender, FormClosedEventArgs e)
         {
@@ -75,7 +84,7 @@ namespace HotelReservation
         {
             if (viewReservations == null || viewReservations.IsDisposed)
             {
-                viewReservations = new ViewReservationsForm(Session.CurrentUser.Role);
+                viewReservations = new ViewReservationsForm();
                 viewReservations.FormClosed += viewReservations_Closed;
                 viewReservations.MdiParent = this;
                 viewReservations.Show();
@@ -104,6 +113,11 @@ namespace HotelReservation
                 login.Show();
                 this.Close();
             }
+        }
+
+        private void menupnl_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

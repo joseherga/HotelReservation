@@ -30,7 +30,7 @@ namespace HotelReservation
 
         private void btnViewReservations_Click(object sender, EventArgs e)
         {
-            ViewReservationsForm vr = new ViewReservationsForm(Session.CurrentUser.Role);
+            ViewReservationsForm vr = new ViewReservationsForm();
             vr.Show();
             this.Hide();
         }

@@ -1,4 +1,7 @@
-﻿namespace HotelReservation
+﻿using System;
+using System.Windows.Forms;
+
+namespace HotelReservation
 {
     partial class ViewReservationsForm
     {
@@ -77,7 +80,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(261, 22);
             this.txtSearch.TabIndex = 3;
-            this.txtSearch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseClick);
             // 
             // lblSearch
             // 
@@ -125,6 +127,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void btnRefresh_Click_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

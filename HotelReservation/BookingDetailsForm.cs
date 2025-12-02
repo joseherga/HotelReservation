@@ -15,11 +15,9 @@ namespace HotelReservation
         {
             InitializeComponent();
 
-            // Event handlers
             dgRooms.CellClick += dgRooms_CellClick;
             txtGuests.KeyPress += txtGuests_KeyPress;
 
-            // Make RoomType and Rate read-only
             txtRoomType.ReadOnly = true;
             txtRate.ReadOnly = true;
         }
@@ -113,9 +111,7 @@ namespace HotelReservation
         private void txtGuests_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
                 e.Handled = true;
-            }
         }
 
         private bool IsRoomAvailable(int roomId, DateTime checkIn, DateTime checkOut)
@@ -141,7 +137,7 @@ namespace HotelReservation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (Session.CurrentUser.Role == "Admin")
+            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
                 new AdminDashboardForm().Show();
             else
                 new UserDashboard().Show();
@@ -154,6 +150,7 @@ namespace HotelReservation
             if (!ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut))
                 return;
 
+            // Create the payment form and pass data
             PaymentScreenForm ps = new PaymentScreenForm
             {
                 FullName = txtFullName.Text,
@@ -165,9 +162,13 @@ namespace HotelReservation
                 RoomID = selectedRoomID
             };
 
-            ps.Show();
+            // Show the payment form as a dialog (blocks this form until payment is completed)
+            ps.ShowDialog();
+
+            // Optional: after payment is done, close the booking form
             this.Close();
         }
+
 
         private bool ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut)
         {

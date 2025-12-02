@@ -83,7 +83,7 @@
             // 
             this.userMenu.Image = global::HotelReservation.Properties.Resources.menu;
             this.userMenu.Location = new System.Drawing.Point(9, 10);
-            this.userMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userMenu.Margin = new System.Windows.Forms.Padding(2);
             this.userMenu.Name = "userMenu";
             this.userMenu.Size = new System.Drawing.Size(27, 29);
             this.userMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -106,7 +106,7 @@
             this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.nightControlBox1.EnableMinimizeButton = true;
             this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.nightControlBox1.Location = new System.Drawing.Point(880, 0);
+            this.nightControlBox1.Location = new System.Drawing.Point(845, 0);
             this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.White;
             this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -154,17 +154,18 @@
             this.menupnl.Controls.Add(this.LogoutPanel);
             this.menupnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.menupnl.Location = new System.Drawing.Point(0, 49);
-            this.menupnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menupnl.Margin = new System.Windows.Forms.Padding(2);
             this.menupnl.Name = "menupnl";
             this.menupnl.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.menupnl.Size = new System.Drawing.Size(225, 563);
             this.menupnl.TabIndex = 12;
+            this.menupnl.Paint += new System.Windows.Forms.PaintEventHandler(this.menupnl_Paint);
             // 
             // BookNowPanel
             // 
             this.BookNowPanel.Controls.Add(this.btnBookNow);
             this.BookNowPanel.Location = new System.Drawing.Point(2, 26);
-            this.BookNowPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BookNowPanel.Margin = new System.Windows.Forms.Padding(2);
             this.BookNowPanel.Name = "BookNowPanel";
             this.BookNowPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.BookNowPanel.Size = new System.Drawing.Size(225, 49);
@@ -191,7 +192,7 @@
             // 
             this.MyReservationPanel.Controls.Add(this.btnMyReservation);
             this.MyReservationPanel.Location = new System.Drawing.Point(2, 79);
-            this.MyReservationPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MyReservationPanel.Margin = new System.Windows.Forms.Padding(2);
             this.MyReservationPanel.Name = "MyReservationPanel";
             this.MyReservationPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.MyReservationPanel.Size = new System.Drawing.Size(225, 49);
@@ -218,7 +219,7 @@
             // 
             this.LogoutPanel.Controls.Add(this.btnUserLogout);
             this.LogoutPanel.Location = new System.Drawing.Point(2, 132);
-            this.LogoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.LogoutPanel.Name = "LogoutPanel";
             this.LogoutPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.LogoutPanel.Size = new System.Drawing.Size(225, 49);

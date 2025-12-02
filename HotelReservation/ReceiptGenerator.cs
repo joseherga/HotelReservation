@@ -8,7 +8,7 @@ namespace HotelReservation
 {
     public class ReceiptGenerator
     {
-        public static void CreateReceipt(string FullName, string RoomType, int Guests, DateTime checkIn, DateTime checkOut, decimal Rate, string filePath, 
+        public static void CreateReceipt(string FullName, string RoomType, int Guests, DateTime checkIn, DateTime checkOut, decimal Rate, string filePath,
             string logoPath = @"C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\Logo.png") // Default logo path; change as necessary
         {
             int totalNights = Math.Max(1, (checkOut - checkIn).Days);
