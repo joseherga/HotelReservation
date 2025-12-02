@@ -17,7 +17,7 @@ namespace HotelReservation
 
         private ViewReservationsForm _viewReservationsForm;
         private Timer autoCloseTimer;
-        private int countdownSeconds = 10;
+        private int countdownSeconds = 20;
 
         public PaymentScreenForm(ViewReservationsForm viewReservationsForm = null)
         {
@@ -26,16 +26,13 @@ namespace HotelReservation
 
             // Initialize timer
             autoCloseTimer = new Timer();
-            autoCloseTimer.Interval = 1000; // tick every second
+            autoCloseTimer.Interval = 1000; // 1 second
             autoCloseTimer.Tick += AutoCloseTimer_Tick;
 
-            // Countdown label is hidden initially
-            lblCountdown.Visible = false; // Add lblCountdown to your form in designer
-        }
+            // Disable print receipt until payment is done
+            prntReceipt.Enabled = false;
 
-        private void PaymentScreenForm_Resize(object sender, EventArgs e)
-        {
-            lblCountdown.Location = new System.Drawing.Point(this.ClientSize.Width - lblCountdown.Width - 10, 10);
+            lblCountdown.Visible = false; // Add lblCountdown to your form in designer
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -57,13 +54,17 @@ namespace HotelReservation
                 return;
             }
 
+            // Payment successful
             MessageBox.Show("Payment Successful! Thank you for your reservation.",
                 "Payment Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             InsertReservation();
 
-            // Show countdown label only after paying
-            countdownSeconds = 10;
+            // Enable the Print Receipt button
+            prntReceipt.Enabled = true;
+
+            // Start countdown
+            countdownSeconds = 20;
             lblCountdown.Text = $"Returning to dashboard in {countdownSeconds} seconds...";
             lblCountdown.Visible = true;
             autoCloseTimer.Start();
@@ -134,7 +135,7 @@ namespace HotelReservation
             }
         }
 
-        private void prntReceipt_Click(object sender, EventArgs e)
+        private void btnPrintReceipt_Click(object sender, EventArgs e)
         {
             try
             {
@@ -145,7 +146,7 @@ namespace HotelReservation
 
                 MessageBox.Show($"Receipt saved to {filePath}", "Receipt Printed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Stop timer and go back immediately
+                // Stop timer and immediately return to dashboard
                 autoCloseTimer.Stop();
                 CloseAndOpenDashboard();
             }
@@ -157,6 +158,7 @@ namespace HotelReservation
 
         private void CloseAndOpenDashboard()
         {
+            // Refresh reservations grid if referenced
             _viewReservationsForm?.LoadReservations();
 
             if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))

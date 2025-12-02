@@ -217,7 +217,6 @@ namespace HotelReservation
             this.prntReceipt.TabIndex = 17;
             this.prntReceipt.Text = "Print Receipt";
             this.prntReceipt.UseVisualStyleBackColor = true;
-            this.prntReceipt.Click += new System.EventHandler(this.prntReceipt_Click);
             // 
             // label2
             // 

@@ -49,8 +49,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBoxBookingInfo = new System.Windows.Forms.GroupBox();
-            this.txtGuests = new System.Windows.Forms.TextBox();
             this.txtRoomType = new System.Windows.Forms.TextBox();
+            this.txtGuests = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -303,19 +303,19 @@
             this.groupBoxBookingInfo.TabStop = false;
             this.groupBoxBookingInfo.Text = "Booking Information";
             // 
-            // txtGuests
-            // 
-            this.txtGuests.Location = new System.Drawing.Point(168, 340);
-            this.txtGuests.Name = "txtGuests";
-            this.txtGuests.Size = new System.Drawing.Size(276, 20);
-            this.txtGuests.TabIndex = 22;
-            // 
             // txtRoomType
             // 
             this.txtRoomType.Location = new System.Drawing.Point(168, 245);
             this.txtRoomType.Name = "txtRoomType";
             this.txtRoomType.Size = new System.Drawing.Size(276, 20);
             this.txtRoomType.TabIndex = 23;
+            // 
+            // txtGuests
+            // 
+            this.txtGuests.Location = new System.Drawing.Point(168, 340);
+            this.txtGuests.Name = "txtGuests";
+            this.txtGuests.Size = new System.Drawing.Size(276, 20);
+            this.txtGuests.TabIndex = 22;
             // 
             // BookingDetailsForm
             // 
