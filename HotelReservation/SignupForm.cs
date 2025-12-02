@@ -10,8 +10,8 @@ namespace HotelReservation
 {
     public partial class SignupForm : Form
     {
-        static CallDatabase callDatabase = new CallDatabase();
-        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+        static CallDatabase cd = new CallDatabase();
+        SqlConnection con = new SqlConnection(cd.GetDatabasePath());
 
         private const string SystemEmail = "ByteLodge.sup@gmail.com";
         private const string SystemPassword = "tpak deuz wmhy nugl"; // app-specific password
@@ -205,6 +205,11 @@ namespace HotelReservation
         {
             new LoginForm().Show();
             this.Close();
+        }
+
+        private void SignupForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

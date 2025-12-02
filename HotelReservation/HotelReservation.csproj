@@ -103,12 +103,6 @@
     <Compile Include="ManageRoomForm.Designer.cs">
       <DependentUpon>ManageRoomForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageRoomForms.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ManageRoomForms.Designer.cs">
-      <DependentUpon>ManageRoomForms.cs</DependentUpon>
-    </Compile>
     <Compile Include="OtpVerificationForm.cs">
       <SubType>Form</SubType>
     </Compile>

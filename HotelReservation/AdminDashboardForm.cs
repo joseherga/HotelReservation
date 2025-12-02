@@ -6,8 +6,8 @@ namespace HotelReservation
 {
     public partial class AdminDashboardForm : Form
     {
-        static CallDatabase callDatabase = new CallDatabase();
-        SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath());
+        static CallDatabase cd = new CallDatabase();
+        SqlConnection con = new SqlConnection(cd.GetDatabasePath());
         SqlCommand cmd;
 
         string currentUser = "";
