@@ -59,9 +59,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.label1.Location = new System.Drawing.Point(52, 5);
+            this.label1.Location = new System.Drawing.Point(69, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 37);
+            this.label1.Size = new System.Drawing.Size(204, 46);
             this.label1.TabIndex = 4;
             this.label1.Text = "Byte Lodge";
             // 
@@ -75,17 +76,18 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.ForeColor = System.Drawing.Color.SeaShell;
             this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(984, 49);
+            this.panel5.Size = new System.Drawing.Size(1320, 60);
             this.panel5.TabIndex = 9;
             // 
             // userMenu
             // 
             this.userMenu.Image = global::HotelReservation.Properties.Resources.menu;
-            this.userMenu.Location = new System.Drawing.Point(9, 10);
-            this.userMenu.Margin = new System.Windows.Forms.Padding(2);
+            this.userMenu.Location = new System.Drawing.Point(12, 12);
+            this.userMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.userMenu.Name = "userMenu";
-            this.userMenu.Size = new System.Drawing.Size(27, 29);
+            this.userMenu.Size = new System.Drawing.Size(36, 36);
             this.userMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userMenu.TabIndex = 14;
             this.userMenu.TabStop = false;
@@ -106,7 +108,7 @@
             this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.nightControlBox1.EnableMinimizeButton = true;
             this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.nightControlBox1.Location = new System.Drawing.Point(845, 0);
+            this.nightControlBox1.Location = new System.Drawing.Point(1181, 0);
             this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.White;
             this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -121,9 +123,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Light", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(211, 20);
+            this.label2.Location = new System.Drawing.Point(281, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(280, 17);
+            this.label2.Size = new System.Drawing.Size(363, 23);
             this.label2.TabIndex = 11;
             this.label2.Text = "Plan your stay and manage your bookings below.";
             // 
@@ -132,17 +135,20 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.Controls.Add(this.lblSupport);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 612);
+            this.panel1.Location = new System.Drawing.Point(0, 760);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 49);
+            this.panel1.Size = new System.Drawing.Size(1320, 60);
             this.panel1.TabIndex = 11;
             // 
             // lblSupport
             // 
+            this.lblSupport.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblSupport.AutoSize = true;
-            this.lblSupport.Location = new System.Drawing.Point(507, 18);
+            this.lblSupport.Location = new System.Drawing.Point(529, 13);
+            this.lblSupport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupport.Name = "lblSupport";
-            this.lblSupport.Size = new System.Drawing.Size(251, 13);
+            this.lblSupport.Size = new System.Drawing.Size(311, 16);
             this.lblSupport.TabIndex = 0;
             this.lblSupport.Text = "© 2025 Byte Lodge Hotel | support@bytelodge.com";
             // 
@@ -153,22 +159,21 @@
             this.menupnl.Controls.Add(this.MyReservationPanel);
             this.menupnl.Controls.Add(this.LogoutPanel);
             this.menupnl.Dock = System.Windows.Forms.DockStyle.Left;
-            this.menupnl.Location = new System.Drawing.Point(0, 49);
-            this.menupnl.Margin = new System.Windows.Forms.Padding(2);
+            this.menupnl.Location = new System.Drawing.Point(0, 60);
+            this.menupnl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.menupnl.Name = "menupnl";
-            this.menupnl.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
-            this.menupnl.Size = new System.Drawing.Size(225, 563);
+            this.menupnl.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.menupnl.Size = new System.Drawing.Size(300, 700);
             this.menupnl.TabIndex = 12;
-            this.menupnl.Paint += new System.Windows.Forms.PaintEventHandler(this.menupnl_Paint);
             // 
             // BookNowPanel
             // 
             this.BookNowPanel.Controls.Add(this.btnBookNow);
-            this.BookNowPanel.Location = new System.Drawing.Point(2, 26);
-            this.BookNowPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.BookNowPanel.Location = new System.Drawing.Point(3, 32);
+            this.BookNowPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookNowPanel.Name = "BookNowPanel";
-            this.BookNowPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
-            this.BookNowPanel.Size = new System.Drawing.Size(225, 49);
+            this.BookNowPanel.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.BookNowPanel.Size = new System.Drawing.Size(300, 60);
             this.BookNowPanel.TabIndex = 14;
             // 
             // btnBookNow
@@ -178,10 +183,11 @@
             this.btnBookNow.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBookNow.Image = global::HotelReservation.Properties.Resources.booking1;
             this.btnBookNow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBookNow.Location = new System.Drawing.Point(-13, -11);
+            this.btnBookNow.Location = new System.Drawing.Point(-17, -14);
+            this.btnBookNow.Margin = new System.Windows.Forms.Padding(4);
             this.btnBookNow.Name = "btnBookNow";
-            this.btnBookNow.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnBookNow.Size = new System.Drawing.Size(244, 73);
+            this.btnBookNow.Padding = new System.Windows.Forms.Padding(37, 0, 0, 0);
+            this.btnBookNow.Size = new System.Drawing.Size(325, 90);
             this.btnBookNow.TabIndex = 2;
             this.btnBookNow.Text = "                Book Now";
             this.btnBookNow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,11 +197,11 @@
             // MyReservationPanel
             // 
             this.MyReservationPanel.Controls.Add(this.btnMyReservation);
-            this.MyReservationPanel.Location = new System.Drawing.Point(2, 79);
-            this.MyReservationPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.MyReservationPanel.Location = new System.Drawing.Point(3, 96);
+            this.MyReservationPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MyReservationPanel.Name = "MyReservationPanel";
-            this.MyReservationPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
-            this.MyReservationPanel.Size = new System.Drawing.Size(225, 49);
+            this.MyReservationPanel.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.MyReservationPanel.Size = new System.Drawing.Size(300, 60);
             this.MyReservationPanel.TabIndex = 14;
             // 
             // btnMyReservation
@@ -205,10 +211,11 @@
             this.btnMyReservation.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMyReservation.Image = global::HotelReservation.Properties.Resources.reservation;
             this.btnMyReservation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMyReservation.Location = new System.Drawing.Point(-13, -12);
+            this.btnMyReservation.Location = new System.Drawing.Point(-17, -15);
+            this.btnMyReservation.Margin = new System.Windows.Forms.Padding(4);
             this.btnMyReservation.Name = "btnMyReservation";
-            this.btnMyReservation.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnMyReservation.Size = new System.Drawing.Size(244, 73);
+            this.btnMyReservation.Padding = new System.Windows.Forms.Padding(37, 0, 0, 0);
+            this.btnMyReservation.Size = new System.Drawing.Size(325, 90);
             this.btnMyReservation.TabIndex = 1;
             this.btnMyReservation.Text = "                My Reservations";
             this.btnMyReservation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,11 +225,11 @@
             // LogoutPanel
             // 
             this.LogoutPanel.Controls.Add(this.btnUserLogout);
-            this.LogoutPanel.Location = new System.Drawing.Point(2, 132);
-            this.LogoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.LogoutPanel.Location = new System.Drawing.Point(3, 160);
+            this.LogoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LogoutPanel.Name = "LogoutPanel";
-            this.LogoutPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
-            this.LogoutPanel.Size = new System.Drawing.Size(225, 49);
+            this.LogoutPanel.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.LogoutPanel.Size = new System.Drawing.Size(300, 60);
             this.LogoutPanel.TabIndex = 13;
             // 
             // btnUserLogout
@@ -232,10 +239,11 @@
             this.btnUserLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUserLogout.Image = global::HotelReservation.Properties.Resources.logout1;
             this.btnUserLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUserLogout.Location = new System.Drawing.Point(-11, -12);
+            this.btnUserLogout.Location = new System.Drawing.Point(-15, -15);
+            this.btnUserLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnUserLogout.Name = "btnUserLogout";
-            this.btnUserLogout.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.btnUserLogout.Size = new System.Drawing.Size(244, 73);
+            this.btnUserLogout.Padding = new System.Windows.Forms.Padding(37, 0, 0, 0);
+            this.btnUserLogout.Size = new System.Drawing.Size(325, 90);
             this.btnUserLogout.TabIndex = 3;
             this.btnUserLogout.Text = "                Logout";
             this.btnUserLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,16 +257,17 @@
             // 
             // UserDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::HotelReservation.Properties.Resources.bytelodge__2_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.ClientSize = new System.Drawing.Size(1320, 820);
             this.Controls.Add(this.menupnl);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserDashboard";
             this.Text = "UserDashboard";
             this.Load += new System.EventHandler(this.UserDashboard_Load);

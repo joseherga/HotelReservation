@@ -55,7 +55,9 @@ namespace HotelReservation
 
         private void btnManageRooms_Click(object sender, EventArgs e)
         {
-
+            ManageRoomForm mrF = new ManageRoomForm();
+            mrF.Show();
+            this.Hide();
         }
     }
 }

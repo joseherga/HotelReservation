@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using ZXing;
@@ -63,6 +64,46 @@ namespace HotelReservation
             // Simulate payment success
             MessageBox.Show("GCash Payment Successful!", "Payment Confirmed",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Save reservation to database
+            try
+            {
+                var callDatabase = new CallDatabase();
+                using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
+                {
+                    con.Open();
+
+                    string insert = @"INSERT INTO Reservations 
+                              (FullName, Guest, RoomType, CheckIn, CheckOut, Rate, RoomID, UserID)
+                              VALUES (@FullName, @Guest, @RoomType, @CheckIn, @CheckOut, @Rate, @RoomID, @UserID)";
+
+                    using (SqlCommand cmd = new SqlCommand(insert, con))
+                    {
+                        cmd.Parameters.AddWithValue("@FullName", FullName);
+                        cmd.Parameters.AddWithValue("@Guest", Guest);
+                        cmd.Parameters.AddWithValue("@RoomType", RoomType);
+                        cmd.Parameters.AddWithValue("@CheckIn", CheckIn);
+                        cmd.Parameters.AddWithValue("@CheckOut", CheckOut);
+                        cmd.Parameters.AddWithValue("@Rate", Rate);
+                        cmd.Parameters.AddWithValue("@RoomID", RoomID);
+                        cmd.Parameters.AddWithValue("@UserID", Session.CurrentUser?.UserID ?? (object)DBNull.Value);
+
+                        cmd.ExecuteNonQuery();
+
+                        string updateStatus = "UPDATE Rooms SET Status = 'Occupied' WHERE RoomID = @RoomID";
+                        using (SqlCommand updateCmd = new SqlCommand(updateStatus, con))
+                        {
+                            updateCmd.Parameters.AddWithValue("@RoomID", RoomID);
+                            updateCmd.ExecuteNonQuery();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving reservation: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // Generate receipt PDF
             string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),

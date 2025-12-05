@@ -10,11 +10,11 @@ namespace HotelReservation
         static CallDatabase callDatabase = new CallDatabase();
         private int selectedRoomID = 0;
         private int roomCapacity = 0;
+        private ManageRoomForm manageRoomForm;
 
         public BookingDetailsForm()
         {
             InitializeComponent();
-
             dgRooms.CellClick += dgRooms_CellClick;
             txtGuests.KeyPress += txtGuests_KeyPress;
 
@@ -143,11 +143,13 @@ namespace HotelReservation
 
             this.Close();
         }
+
         private void btnProceed_Click(object sender, EventArgs e)
         {
             if (!ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut))
                 return;
 
+            // Create booking object for payment
             ChoosePaymentMethodForm chooseForm = new ChoosePaymentMethodForm
             {
                 FullName = txtFullName.Text,
@@ -159,7 +161,32 @@ namespace HotelReservation
                 RoomID = selectedRoomID
             };
 
-            chooseForm.ShowDialog();
+            // Show payment form
+            var result = chooseForm.ShowDialog();
+
+            // ✅ Only mark room as Occupied if payment succeeded
+            if (result == DialogResult.OK) // assume OK means payment success
+            {
+                using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
+                {
+                    try
+                    {
+                        con.Open();
+                        string updateRoomStatus = "UPDATE Rooms SET Status = 'Occupied' WHERE RoomID = @RoomID";
+                        SqlCommand statusCmd = new SqlCommand(updateRoomStatus, con);
+                        statusCmd.Parameters.AddWithValue("@RoomID", selectedRoomID);
+                        statusCmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating room status: " + ex.Message);
+                    }
+                }
+
+                // Auto‑refresh ManageRoomForm
+                manageRoomForm?.RefreshRooms();
+            }
+
             this.Close();
         }
         private bool ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut)

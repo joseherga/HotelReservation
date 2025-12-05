@@ -30,6 +30,7 @@
         {
             this.btnCard = new ReaLTaiizor.Controls.Button();
             this.btnGCash = new ReaLTaiizor.Controls.Button();
+            this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             this.SuspendLayout();
             // 
             // btnCard
@@ -43,12 +44,12 @@
             this.btnCard.Image = null;
             this.btnCard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCard.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnCard.Location = new System.Drawing.Point(65, 76);
-            this.btnCard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCard.Location = new System.Drawing.Point(90, 40);
+            this.btnCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCard.Name = "btnCard";
             this.btnCard.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnCard.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnCard.Size = new System.Drawing.Size(106, 32);
+            this.btnCard.Size = new System.Drawing.Size(141, 40);
             this.btnCard.TabIndex = 1;
             this.btnCard.Text = "Pay with Card";
             this.btnCard.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -65,27 +66,56 @@
             this.btnGCash.Image = null;
             this.btnGCash.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGCash.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnGCash.Location = new System.Drawing.Point(216, 76);
-            this.btnGCash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGCash.Location = new System.Drawing.Point(290, 40);
+            this.btnGCash.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGCash.Name = "btnGCash";
             this.btnGCash.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnGCash.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnGCash.Size = new System.Drawing.Size(128, 32);
+            this.btnGCash.Size = new System.Drawing.Size(171, 40);
             this.btnGCash.TabIndex = 1;
             this.btnGCash.Text = "Pay with Gcash";
             this.btnGCash.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnGCash.Click += new System.EventHandler(this.btnGCash_Click);
             // 
+            // nightControlBox1
+            // 
+            this.nightControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nightControlBox1.BackColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.CloseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.nightControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nightControlBox1.DefaultLocation = true;
+            this.nightControlBox1.DisableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.DisableMinimizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableCloseColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.nightControlBox1.Enabled = false;
+            this.nightControlBox1.EnableMaximizeButton = false;
+            this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableMinimizeButton = false;
+            this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.Location = new System.Drawing.Point(413, -4);
+            this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nightControlBox1.MinimizeHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.Name = "nightControlBox1";
+            this.nightControlBox1.Size = new System.Drawing.Size(139, 31);
+            this.nightControlBox1.TabIndex = 3;
+            // 
             // ChoosePaymentMethodForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::HotelReservation.Properties.Resources.bytelodge__3_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(412, 131);
+            this.ClientSize = new System.Drawing.Size(549, 102);
+            this.ControlBox = false;
+            this.Controls.Add(this.nightControlBox1);
             this.Controls.Add(this.btnGCash);
             this.Controls.Add(this.btnCard);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ChoosePaymentMethodForm";
             this.Text = "ChoosePaymentMethodForm";
             this.ResumeLayout(false);
@@ -96,5 +126,6 @@
 
         private ReaLTaiizor.Controls.Button btnCard;
         private ReaLTaiizor.Controls.Button btnGCash;
+        private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
     }
 }

@@ -126,6 +126,13 @@ namespace HotelReservation
                         cmd.Parameters.AddWithValue("@UserID", Session.CurrentUser?.UserID ?? (object)DBNull.Value);
 
                         cmd.ExecuteNonQuery();
+
+                        string updateStatus = "UPDATE Rooms SET Status = 'Occupied' WHERE RoomID = @RoomID";
+                        using (SqlCommand updateCmd = new SqlCommand(updateStatus, con))
+                        {
+                            updateCmd.Parameters.AddWithValue("@RoomID", RoomID);
+                            updateCmd.ExecuteNonQuery();
+                        }
                     }
                 }
             }
@@ -135,7 +142,20 @@ namespace HotelReservation
             }
         }
 
-        private void btnPrintReceipt_Click(object sender, EventArgs e)
+        private void CloseAndOpenDashboard()
+        {
+            // Refresh reservations grid if referenced
+            _viewReservationsForm?.LoadReservations();
+
+            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                new AdminDashboardForm().Show();
+            else
+                new UserDashboard().Show();
+
+            this.Close();
+        }
+
+        private void prntReceipt_Click(object sender, EventArgs e)
         {
             try
             {
@@ -154,19 +174,6 @@ namespace HotelReservation
             {
                 MessageBox.Show("Failed to print receipt: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void CloseAndOpenDashboard()
-        {
-            // Refresh reservations grid if referenced
-            _viewReservationsForm?.LoadReservations();
-
-            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
-                new AdminDashboardForm().Show();
-            else
-                new UserDashboard().Show();
-
-            this.Close();
         }
     }
 }

@@ -53,18 +53,9 @@ namespace HotelReservation
             if (bookingDetails == null || bookingDetails.IsDisposed)
             {
                 bookingDetails = new BookingDetailsForm();
-
-                // Event when bookingDetails form is closed
                 bookingDetails.FormClosed += bookingDetails_Closed;
-
-                // Hide the dashboard when booking form opens
-                this.Hide();
-
-                // Show the booking form modally
-                bookingDetails.ShowDialog();
-
-                // After booking form closes, close the dashboard itself
-                this.Close();
+                bookingDetails.MdiParent = this;
+                bookingDetails.Show();
             }
             else
             {
@@ -73,7 +64,6 @@ namespace HotelReservation
                 bookingDetails.Activate();
             }
         }
-
 
         private void bookingDetails_Closed(object sender, FormClosedEventArgs e)
         {
@@ -96,11 +86,11 @@ namespace HotelReservation
                 viewReservations.Activate();
             }
         }
-
         private void viewReservations_Closed(object sender, FormClosedEventArgs e)
         {
             viewReservations = null;
         }
+
 
         private void btnUserLogout_Click(object sender, EventArgs e)
         {
@@ -113,11 +103,6 @@ namespace HotelReservation
                 login.Show();
                 this.Close();
             }
-        }
-
-        private void menupnl_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

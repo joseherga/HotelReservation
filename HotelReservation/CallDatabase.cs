@@ -9,7 +9,7 @@ namespace HotelReservation
     internal class CallDatabase
     {
 
-        string DatabasePath = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=hotel_db;Integrated Security=True";
+        string DatabasePath = @"Data Source=.\SQLEXPRESS;Initial Catalog=hotel_db;Integrated Security=True";
 
         public string GetDatabasePath()
         {
