@@ -142,18 +142,6 @@ namespace HotelReservation
                 noteCell.PaddingTop = 6f;
                 bottomTbl.AddCell(noteCell);
 
-                // QR Code or Barcode Cell
-                PdfPCell qrCell = new PdfPCell() { Border = Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
-                // Generate QR with the receipt reference (small and optional)
-                BarcodeQRCode qr = new BarcodeQRCode("https://www.youtube.com/watch?v=dQw4w9WgXcQ", 120, 120, null);
-                Image qrImage = qr.GetImage();
-                qrImage.ScaleToFit(80f, 80f);
-                qrCell.AddElement(qrImage);
-                qrCell.PaddingTop = 2f;
-                bottomTbl.AddCell(qrCell);
-
-                doc.Add(bottomTbl);
-
                 // Footer line & contact
                 doc.Add(new Paragraph("\n"));
                 var footerLine = new LineSeparator(0.5f, 100f, BaseColor.LIGHT_GRAY, Element.ALIGN_CENTER, -2f);
