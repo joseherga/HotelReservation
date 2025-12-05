@@ -134,7 +134,6 @@ namespace HotelReservation
                 return count == 0;
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
@@ -144,32 +143,25 @@ namespace HotelReservation
 
             this.Close();
         }
-
         private void btnProceed_Click(object sender, EventArgs e)
         {
             if (!ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut))
                 return;
 
-            // Create the payment form and pass data
-            PaymentScreenForm ps = new PaymentScreenForm
+            ChoosePaymentMethodForm chooseForm = new ChoosePaymentMethodForm
             {
                 FullName = txtFullName.Text,
                 RoomType = txtRoomType.Text,
                 Guest = guestCount,
-                checkIn = checkIn,
-                checkOut = checkOut,
+                CheckIn = checkIn,
+                CheckOut = checkOut,
                 Rate = decimal.Parse(txtRate.Text),
                 RoomID = selectedRoomID
             };
 
-            // Show the payment form as a dialog (blocks this form until payment is completed)
-            ps.ShowDialog();
-
-            // Optional: after payment is done, close the booking form
+            chooseForm.ShowDialog();
             this.Close();
         }
-
-
         private bool ValidateBooking(out int guestCount, out DateTime checkIn, out DateTime checkOut)
         {
             guestCount = 0;

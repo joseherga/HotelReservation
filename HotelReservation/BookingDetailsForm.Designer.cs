@@ -72,7 +72,7 @@
             this.dtCheckOut.Location = new System.Drawing.Point(168, 201);
             this.dtCheckOut.Margin = new System.Windows.Forms.Padding(4);
             this.dtCheckOut.Name = "dtCheckOut";
-            this.dtCheckOut.Size = new System.Drawing.Size(276, 20);
+            this.dtCheckOut.Size = new System.Drawing.Size(276, 22);
             this.dtCheckOut.TabIndex = 2;
             // 
             // dtCheckIn
@@ -80,7 +80,7 @@
             this.dtCheckIn.Location = new System.Drawing.Point(168, 158);
             this.dtCheckIn.Margin = new System.Windows.Forms.Padding(4);
             this.dtCheckIn.Name = "dtCheckIn";
-            this.dtCheckIn.Size = new System.Drawing.Size(276, 20);
+            this.dtCheckIn.Size = new System.Drawing.Size(276, 22);
             this.dtCheckIn.TabIndex = 1;
             // 
             // txtPhone
@@ -88,7 +88,7 @@
             this.txtPhone.Location = new System.Drawing.Point(168, 114);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(276, 20);
+            this.txtPhone.Size = new System.Drawing.Size(276, 22);
             this.txtPhone.TabIndex = 11;
             // 
             // txtEmail
@@ -96,7 +96,7 @@
             this.txtEmail.Location = new System.Drawing.Point(168, 73);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(276, 20);
+            this.txtEmail.Size = new System.Drawing.Size(276, 22);
             this.txtEmail.TabIndex = 13;
             // 
             // label1
@@ -108,7 +108,7 @@
             this.label1.Location = new System.Drawing.Point(73, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 31);
+            this.label1.Size = new System.Drawing.Size(186, 40);
             this.label1.TabIndex = 16;
             this.label1.Text = "Book Here:";
             // 
@@ -132,7 +132,7 @@
             this.txtRate.Location = new System.Drawing.Point(168, 293);
             this.txtRate.Margin = new System.Windows.Forms.Padding(4);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(276, 20);
+            this.txtRate.Size = new System.Drawing.Size(276, 22);
             this.txtRate.TabIndex = 20;
             // 
             // lblCheckIn
@@ -143,7 +143,7 @@
             this.lblCheckIn.Location = new System.Drawing.Point(36, 159);
             this.lblCheckIn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(68, 16);
+            this.lblCheckIn.Size = new System.Drawing.Size(86, 20);
             this.lblCheckIn.TabIndex = 4;
             this.lblCheckIn.Text = "CHECK IN:";
             // 
@@ -155,7 +155,7 @@
             this.lblCheckOut.Location = new System.Drawing.Point(20, 201);
             this.lblCheckOut.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCheckOut.Name = "lblCheckOut";
-            this.lblCheckOut.Size = new System.Drawing.Size(81, 16);
+            this.lblCheckOut.Size = new System.Drawing.Size(104, 20);
             this.lblCheckOut.TabIndex = 5;
             this.lblCheckOut.Text = "CHECK OUT:";
             // 
@@ -164,7 +164,7 @@
             this.txtFullName.Location = new System.Drawing.Point(168, 32);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(276, 20);
+            this.txtFullName.Size = new System.Drawing.Size(276, 22);
             this.txtFullName.TabIndex = 8;
             // 
             // lblRoomType
@@ -175,7 +175,7 @@
             this.lblRoomType.Location = new System.Drawing.Point(27, 245);
             this.lblRoomType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRoomType.Name = "lblRoomType";
-            this.lblRoomType.Size = new System.Drawing.Size(83, 16);
+            this.lblRoomType.Size = new System.Drawing.Size(105, 20);
             this.lblRoomType.TabIndex = 7;
             this.lblRoomType.Text = "ROOM TYPE:";
             // 
@@ -187,7 +187,7 @@
             this.lblFullName.Location = new System.Drawing.Point(20, 32);
             this.lblFullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(80, 16);
+            this.lblFullName.Size = new System.Drawing.Size(98, 20);
             this.lblFullName.TabIndex = 9;
             this.lblFullName.Text = "FULL NAME:";
             // 
@@ -199,7 +199,7 @@
             this.lblContactNum.Location = new System.Drawing.Point(20, 119);
             this.lblContactNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContactNum.Name = "lblContactNum";
-            this.lblContactNum.Size = new System.Drawing.Size(88, 16);
+            this.lblContactNum.Size = new System.Drawing.Size(114, 20);
             this.lblContactNum.TabIndex = 10;
             this.lblContactNum.Text = "CONTACT NO.";
             // 
@@ -211,7 +211,7 @@
             this.lblEmail.Location = new System.Drawing.Point(59, 70);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(46, 16);
+            this.lblEmail.Size = new System.Drawing.Size(56, 20);
             this.lblEmail.TabIndex = 12;
             this.lblEmail.Text = "EMAIL:";
             // 
@@ -223,7 +223,7 @@
             this.lblNumOfGuests.Location = new System.Drawing.Point(8, 340);
             this.lblNumOfGuests.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumOfGuests.Name = "lblNumOfGuests";
-            this.lblNumOfGuests.Size = new System.Drawing.Size(114, 16);
+            this.lblNumOfGuests.Size = new System.Drawing.Size(145, 20);
             this.lblNumOfGuests.TabIndex = 15;
             this.lblNumOfGuests.Text = "NO. OF GUEST(S):";
             // 
@@ -249,7 +249,7 @@
             this.lblRoomRate.Location = new System.Drawing.Point(25, 290);
             this.lblRoomRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRoomRate.Name = "lblRoomRate";
-            this.lblRoomRate.Size = new System.Drawing.Size(84, 16);
+            this.lblRoomRate.Size = new System.Drawing.Size(106, 20);
             this.lblRoomRate.TabIndex = 21;
             this.lblRoomRate.Text = "ROOM RATE:";
             // 
@@ -307,14 +307,14 @@
             // 
             this.txtRoomType.Location = new System.Drawing.Point(168, 245);
             this.txtRoomType.Name = "txtRoomType";
-            this.txtRoomType.Size = new System.Drawing.Size(276, 20);
+            this.txtRoomType.Size = new System.Drawing.Size(276, 22);
             this.txtRoomType.TabIndex = 23;
             // 
             // txtGuests
             // 
             this.txtGuests.Location = new System.Drawing.Point(168, 340);
             this.txtGuests.Name = "txtGuests";
-            this.txtGuests.Size = new System.Drawing.Size(276, 20);
+            this.txtGuests.Size = new System.Drawing.Size(276, 22);
             this.txtGuests.TabIndex = 22;
             // 
             // BookingDetailsForm

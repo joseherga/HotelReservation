@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Net;
-using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -12,9 +10,6 @@ namespace HotelReservation
     {
         static CallDatabase cd = new CallDatabase();
         SqlConnection con = new SqlConnection(cd.GetDatabasePath());
-
-        private const string SystemEmail = "ByteLodge.sup@gmail.com";
-        private const string SystemPassword = "tpak deuz wmhy nugl"; // app-specific password
 
         public SignupForm()
         {
@@ -47,9 +42,9 @@ namespace HotelReservation
             if (IsDuplicateUser(username, email))
                 return;
 
-            // Send OTP to verify email
+            // Send OTP to verify email (using EmailHelper now)
             string otpCode = new Random().Next(100000, 999999).ToString();
-            bool otpSent = SendOTPEmail(SystemEmail, SystemPassword, email, otpCode);
+            bool otpSent = EmailHelper.SendOtp(email, otpCode);
 
             if (!otpSent)
             {
@@ -150,39 +145,6 @@ namespace HotelReservation
             finally
             {
                 con.Close();
-            }
-        }
-
-        private bool SendOTPEmail(string senderEmail, string senderPassword, string recipientEmail, string otpCode)
-        {
-            try
-            {
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
-                    smtp.EnableSsl = true;
-
-                    MailMessage mail = new MailMessage
-                    {
-                        From = new MailAddress(senderEmail, "Byte Lodge | Hotel Reservation System"),
-                        Subject = "ByteLodge OTP Verification",
-                        Body = $"Hello,\n\nThank you for signing up with ByteLodge! 🎉\n" +
-                               $"Your One-Time Password (OTP) is: {otpCode}\n\n" +
-                               $"Please enter this code in the app to complete your registration.\n" +
-                               $"Note: This code will expire in 5 minutes.\n\n" +
-                               $"If you didn’t request this, you can safely ignore this email.\n\n" +
-                               $"Best regards,\nByteLodge Hotel Reservation Team"
-                    };
-
-                    mail.To.Add(recipientEmail);
-                    smtp.Send(mail);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to send OTP: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
