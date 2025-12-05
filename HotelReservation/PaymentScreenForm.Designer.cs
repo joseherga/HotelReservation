@@ -51,7 +51,6 @@ namespace HotelReservation
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCountdown = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.RoomDetails = new System.Windows.Forms.GroupBox();
             this.lblRemainingBalance = new System.Windows.Forms.Label();
             this.lblDownpayment = new System.Windows.Forms.Label();
@@ -70,7 +69,6 @@ namespace HotelReservation
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.RoomDetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,9 +87,9 @@ namespace HotelReservation
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Sans Serif Collection", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(183, 12);
+            this.label1.Location = new System.Drawing.Point(93, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 54);
+            this.label1.Size = new System.Drawing.Size(131, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "Payment";
             // 
@@ -273,10 +271,10 @@ namespace HotelReservation
             this.panel2.Controls.Add(this.lblCountdown);
             this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox5);
-            this.panel2.Location = new System.Drawing.Point(-96, -3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1086, 48);
+            this.panel2.Size = new System.Drawing.Size(984, 48);
             this.panel2.TabIndex = 24;
             // 
             // lblCountdown
@@ -292,22 +290,12 @@ namespace HotelReservation
             // pictureBox6
             // 
             this.pictureBox6.Image = global::HotelReservation.Properties.Resources.payment;
-            this.pictureBox6.Location = new System.Drawing.Point(102, 2);
+            this.pictureBox6.Location = new System.Drawing.Point(12, -1);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(75, 49);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 23;
             this.pictureBox6.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::HotelReservation.Properties.Resources.booking;
-            this.pictureBox5.Location = new System.Drawing.Point(12, 14);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(37, 31);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 22;
-            this.pictureBox5.TabStop = false;
             // 
             // RoomDetails
             // 
@@ -462,7 +450,6 @@ namespace HotelReservation
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.RoomDetails.ResumeLayout(false);
             this.RoomDetails.PerformLayout();
             this.ResumeLayout(false);
@@ -491,7 +478,6 @@ namespace HotelReservation
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.GroupBox RoomDetails;
         private System.Windows.Forms.Label lblRate;

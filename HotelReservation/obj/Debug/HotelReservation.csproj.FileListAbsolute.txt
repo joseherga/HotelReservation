@@ -77,3 +77,35 @@ D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReser
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.pdb
 D:\codes\visual studio community\C#\finals\HotelReservation\obj\Debug\HotelReservation.AdminDashboardForm.resources
 D:\codes\visual studio community\C#\finals\HotelReservation\bin\Debug\itextsharp.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\HotelReservation.exe.config
+C:\FinalsHotelR\HotelReservation\bin\Debug\HotelReservation.exe
+C:\FinalsHotelR\HotelReservation\bin\Debug\HotelReservation.pdb
+C:\FinalsHotelR\HotelReservation\bin\Debug\BouncyCastle.Cryptography.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\itextsharp.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\ReaLTaiizor.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\zxing.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\zxing.presentation.dll
+C:\FinalsHotelR\HotelReservation\bin\Debug\BouncyCastle.Cryptography.xml
+C:\FinalsHotelR\HotelReservation\bin\Debug\itextsharp.xml
+C:\FinalsHotelR\HotelReservation\bin\Debug\ReaLTaiizor.xml
+C:\FinalsHotelR\HotelReservation\bin\Debug\zxing.xml
+C:\FinalsHotelR\HotelReservation\bin\Debug\zxing.presentation.xml
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.csproj.AssemblyReference.cache
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.exe.config
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.BookingDetailsForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.ChoosePaymentMethodForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.GCashPaymentForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.LoginForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.AdminDashboardForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.ManageRoomForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.OTPVerificationForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.PaymentScreenForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.SignupForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.Properties.Resources.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.UserDashboard.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.ViewReservationsForm.resources
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.csproj.GenerateResource.cache
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.csproj.CoreCompileInputs.cache
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelRes.16BBCD16.Up2Date
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.exe
+C:\FinalsHotelR\HotelReservation\obj\Debug\HotelReservation.pdb

@@ -147,7 +147,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtboxRoomNumber);
             this.groupBox1.Controls.Add(this.txtRoomNumber);
-            this.groupBox1.Location = new System.Drawing.Point(39, 75);
+            this.groupBox1.Location = new System.Drawing.Point(22, 76);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(894, 74);
             this.groupBox1.TabIndex = 9;
@@ -158,7 +158,7 @@
             // 
             this.btnAddRoom.BackColor = System.Drawing.Color.LimeGreen;
             this.btnAddRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRoom.Location = new System.Drawing.Point(137, 167);
+            this.btnAddRoom.Location = new System.Drawing.Point(126, 167);
             this.btnAddRoom.Name = "btnAddRoom";
             this.btnAddRoom.Size = new System.Drawing.Size(75, 23);
             this.btnAddRoom.TabIndex = 10;
@@ -169,7 +169,7 @@
             // 
             this.btnUpdateRoom.BackColor = System.Drawing.Color.Orange;
             this.btnUpdateRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateRoom.Location = new System.Drawing.Point(235, 167);
+            this.btnUpdateRoom.Location = new System.Drawing.Point(229, 167);
             this.btnUpdateRoom.Name = "btnUpdateRoom";
             this.btnUpdateRoom.Size = new System.Drawing.Size(88, 23);
             this.btnUpdateRoom.TabIndex = 11;
@@ -223,13 +223,14 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.IndianRed;
+            this.panel5.BackColor = System.Drawing.Color.SteelBlue;
             this.panel5.Controls.Add(this.pictureBox5);
             this.panel5.Controls.Add(this.lblWelcome);
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(-3, -1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1009, 70);
+            this.panel5.Size = new System.Drawing.Size(984, 70);
             this.panel5.TabIndex = 16;
             // 
             // pictureBox5

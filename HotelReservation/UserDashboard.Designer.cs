@@ -140,7 +140,7 @@
             // lblSupport
             // 
             this.lblSupport.AutoSize = true;
-            this.lblSupport.Location = new System.Drawing.Point(415, 10);
+            this.lblSupport.Location = new System.Drawing.Point(507, 18);
             this.lblSupport.Name = "lblSupport";
             this.lblSupport.Size = new System.Drawing.Size(251, 13);
             this.lblSupport.TabIndex = 0;

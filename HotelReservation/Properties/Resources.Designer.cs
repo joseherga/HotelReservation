@@ -63,6 +63,16 @@ namespace HotelReservation.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap aamanageroom {
+            get {
+                object obj = ResourceManager.GetObject("aamanageroom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addbutton {
             get {
                 object obj = ResourceManager.GetObject("addbutton", resourceCulture);

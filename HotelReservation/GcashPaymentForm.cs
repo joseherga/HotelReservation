@@ -81,5 +81,10 @@ namespace HotelReservation
 
             this.Close();
         }
+
+        private void pictureBoxQR_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
