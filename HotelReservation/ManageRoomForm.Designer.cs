@@ -303,8 +303,7 @@
             // 
             // ManageRoomForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::HotelReservation.Properties.Resources.BGPPIC;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1312, 814);
@@ -318,8 +317,11 @@
             this.Controls.Add(this.btnUpdateRoom);
             this.Controls.Add(this.btnAddRoom);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManageRoomForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ManageRoomForm";
             this.Load += new System.EventHandler(this.ManageRoomForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRate)).EndInit();

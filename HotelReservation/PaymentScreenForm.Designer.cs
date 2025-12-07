@@ -75,7 +75,7 @@ namespace HotelReservation
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(323, 201);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 0;
@@ -98,7 +98,7 @@ namespace HotelReservation
             // txtbxCardName
             // 
             this.txtbxCardName.Location = new System.Drawing.Point(21, 59);
-            this.txtbxCardName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtbxCardName.Margin = new System.Windows.Forms.Padding(4);
             this.txtbxCardName.Name = "txtbxCardName";
             this.txtbxCardName.Size = new System.Drawing.Size(265, 22);
             this.txtbxCardName.TabIndex = 3;
@@ -132,7 +132,7 @@ namespace HotelReservation
             // txtbxCardNumber
             // 
             this.txtbxCardNumber.Location = new System.Drawing.Point(21, 127);
-            this.txtbxCardNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtbxCardNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtbxCardNumber.Name = "txtbxCardNumber";
             this.txtbxCardNumber.Size = new System.Drawing.Size(265, 22);
             this.txtbxCardNumber.TabIndex = 6;
@@ -140,7 +140,7 @@ namespace HotelReservation
             // masktbExpiryDate
             // 
             this.masktbExpiryDate.Location = new System.Drawing.Point(392, 59);
-            this.masktbExpiryDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.masktbExpiryDate.Margin = new System.Windows.Forms.Padding(4);
             this.masktbExpiryDate.Mask = "00/00";
             this.masktbExpiryDate.Name = "masktbExpiryDate";
             this.masktbExpiryDate.Size = new System.Drawing.Size(55, 22);
@@ -176,7 +176,7 @@ namespace HotelReservation
             // txtboxCVV
             // 
             this.txtboxCVV.Location = new System.Drawing.Point(392, 127);
-            this.txtboxCVV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtboxCVV.Margin = new System.Windows.Forms.Padding(4);
             this.txtboxCVV.Name = "txtboxCVV";
             this.txtboxCVV.PasswordChar = '*';
             this.txtboxCVV.Size = new System.Drawing.Size(55, 22);
@@ -186,7 +186,7 @@ namespace HotelReservation
             // 
             this.btnPayNow.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPayNow.Location = new System.Drawing.Point(188, 201);
-            this.btnPayNow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPayNow.Margin = new System.Windows.Forms.Padding(4);
             this.btnPayNow.Name = "btnPayNow";
             this.btnPayNow.Size = new System.Drawing.Size(100, 28);
             this.btnPayNow.TabIndex = 11;
@@ -213,7 +213,7 @@ namespace HotelReservation
             this.panel1.Controls.Add(this.cardName);
             this.panel1.Controls.Add(this.txtbxCardName);
             this.panel1.Location = new System.Drawing.Point(47, 513);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(569, 286);
             this.panel1.TabIndex = 12;
@@ -222,7 +222,7 @@ namespace HotelReservation
             // 
             this.prntReceipt.ForeColor = System.Drawing.Color.Black;
             this.prntReceipt.Location = new System.Drawing.Point(456, 245);
-            this.prntReceipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.prntReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.prntReceipt.Name = "prntReceipt";
             this.prntReceipt.Size = new System.Drawing.Size(93, 22);
             this.prntReceipt.TabIndex = 17;
@@ -244,7 +244,7 @@ namespace HotelReservation
             // 
             this.pictureBox4.Image = global::HotelReservation.Properties.Resources.padlock;
             this.pictureBox4.Location = new System.Drawing.Point(160, 251);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(28, 16);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -255,7 +255,7 @@ namespace HotelReservation
             // 
             this.pictureBox3.Image = global::HotelReservation.Properties.Resources.cvv;
             this.pictureBox3.Location = new System.Drawing.Point(456, 127);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(36, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -266,7 +266,7 @@ namespace HotelReservation
             // 
             this.pictureBox2.Image = global::HotelReservation.Properties.Resources.padlock;
             this.pictureBox2.Location = new System.Drawing.Point(456, 59);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 25);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -277,7 +277,7 @@ namespace HotelReservation
             // 
             this.pictureBox1.Image = global::HotelReservation.Properties.Resources.visa_mastercard_logos_wh429a8o742pgm38;
             this.pictureBox1.Location = new System.Drawing.Point(295, 59);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(73, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -292,7 +292,7 @@ namespace HotelReservation
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1312, 59);
             this.panel2.TabIndex = 24;
@@ -312,7 +312,7 @@ namespace HotelReservation
             // 
             this.pictureBox6.Image = global::HotelReservation.Properties.Resources.payment;
             this.pictureBox6.Location = new System.Drawing.Point(16, -1);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(100, 60);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -451,8 +451,10 @@ namespace HotelReservation
             this.Controls.Add(this.RoomDetails);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PaymentScreenForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PaymentScreenForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

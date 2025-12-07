@@ -265,9 +265,7 @@ namespace HotelReservation
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            AdminDashboardForm dashboard = new AdminDashboardForm();
-            dashboard.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

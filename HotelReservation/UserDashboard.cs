@@ -90,8 +90,6 @@ namespace HotelReservation
         {
             viewReservations = null;
         }
-
-
         private void btnUserLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

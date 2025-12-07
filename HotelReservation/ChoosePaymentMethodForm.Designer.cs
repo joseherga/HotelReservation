@@ -93,7 +93,7 @@
             this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.Transparent;
             this.nightControlBox1.EnableMinimizeButton = false;
             this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.Transparent;
-            this.nightControlBox1.Location = new System.Drawing.Point(413, -4);
+            this.nightControlBox1.Location = new System.Drawing.Point(428, 0);
             this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.White;
             this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -114,9 +114,9 @@
             this.Controls.Add(this.btnGCash);
             this.Controls.Add(this.btnCard);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ChoosePaymentMethodForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChoosePaymentMethodForm";
             this.ResumeLayout(false);
 

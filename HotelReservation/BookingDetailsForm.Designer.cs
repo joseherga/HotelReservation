@@ -320,7 +320,6 @@
             // BookingDetailsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
             this.BackgroundImage = global::HotelReservation.Properties.Resources.bytelodge__1_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1312, 814);
@@ -337,7 +336,6 @@
             this.Name = "BookingDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookingDetailsForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.BookingDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgRooms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -16,6 +16,11 @@ namespace HotelReservation
             InitializeComponent();
         }
 
+        private void SignupForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnReg_Click(object sender, EventArgs e)
         {
             string firstName = txtFirstName.Text.Trim();
@@ -99,14 +104,19 @@ namespace HotelReservation
         }
 
         private void RegisterUser(string firstName, string middleName, string surname, string fullName,
-            string phone, string email, string username, string password)
+        string phone, string email, string username, string password)
         {
             try
             {
                 con.Open();
-                string query = @"INSERT INTO UserInfo 
-                                (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType) 
-                                VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
+
+            string query = @"
+            INSERT INTO UserInfo 
+            (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType)
+            OUTPUT INSERTED.UserID
+            VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
+
+                int newUserID;
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -117,15 +127,17 @@ namespace HotelReservation
                     cmd.Parameters.AddWithValue("@Phone", phone);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(password)); // hash password
+                    cmd.Parameters.AddWithValue("@Password", HashPassword(password));
                     cmd.Parameters.AddWithValue("@UserType", "Customer");
 
-                    cmd.ExecuteNonQuery();
+                    // GET THE NEW USER ID
+                    newUserID = (int)cmd.ExecuteScalar();
                 }
 
-                // Set session for the logged-in user
+                // Store full session including UserID
                 Session.CurrentUser = new User
                 {
+                    UserID = newUserID,
                     FullName = fullName,
                     Email = email,
                     Phone = phone,
@@ -134,7 +146,6 @@ namespace HotelReservation
 
                 MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Redirect to user dashboard
                 new UserDashboard().Show();
                 this.Hide();
             }
@@ -167,11 +178,6 @@ namespace HotelReservation
         {
             new LoginForm().Show();
             this.Close();
-        }
-
-        private void SignupForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

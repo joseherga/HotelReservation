@@ -136,11 +136,6 @@ namespace HotelReservation
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
-                new AdminDashboardForm().Show();
-            else
-                new UserDashboard().Show();
-
             this.Close();
         }
 
@@ -164,7 +159,7 @@ namespace HotelReservation
             // Show payment form
             var result = chooseForm.ShowDialog();
 
-            // ✅ Only mark room as Occupied if payment succeeded
+            // Only mark room as Occupied if payment succeeded
             if (result == DialogResult.OK) // assume OK means payment success
             {
                 using (SqlConnection con = new SqlConnection(callDatabase.GetDatabasePath()))
@@ -183,7 +178,6 @@ namespace HotelReservation
                     }
                 }
 
-                // Auto‑refresh ManageRoomForm
                 manageRoomForm?.RefreshRooms();
             }
 
