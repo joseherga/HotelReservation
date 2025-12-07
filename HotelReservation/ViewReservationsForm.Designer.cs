@@ -38,6 +38,7 @@ namespace HotelReservation
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistrations)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@ namespace HotelReservation
             // btnRefresh
             // 
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRefresh.Location = new System.Drawing.Point(804, 186);
+            this.btnRefresh.Location = new System.Drawing.Point(800, 185);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 28);
@@ -66,7 +67,7 @@ namespace HotelReservation
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDelete.Location = new System.Drawing.Point(912, 186);
+            this.btnDelete.Location = new System.Drawing.Point(910, 185);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 28);
@@ -78,18 +79,20 @@ namespace HotelReservation
             // txtSearch
             // 
             this.txtSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSearch.Location = new System.Drawing.Point(308, 186);
+            this.txtSearch.Location = new System.Drawing.Point(299, 187);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(261, 22);
             this.txtSearch.TabIndex = 3;
+            this.txtSearch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseClick_1);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblSearch
             // 
             this.lblSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblSearch.AutoSize = true;
             this.lblSearch.BackColor = System.Drawing.Color.Transparent;
-            this.lblSearch.Location = new System.Drawing.Point(232, 192);
+            this.lblSearch.Location = new System.Drawing.Point(230, 189);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(63, 16);
@@ -99,7 +102,7 @@ namespace HotelReservation
             // btnBack
             // 
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBack.Location = new System.Drawing.Point(1020, 186);
+            this.btnBack.Location = new System.Drawing.Point(1020, 185);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 28);
@@ -107,6 +110,18 @@ namespace HotelReservation
             this.btnBack.Text = "BACK";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSearch.Location = new System.Drawing.Point(580, 185);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 28);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // ViewReservationsForm
             // 
@@ -117,6 +132,7 @@ namespace HotelReservation
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1312, 814);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
@@ -142,5 +158,6 @@ namespace HotelReservation
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Button btnBack;
+        private Button btnSearch;
     }
 }
