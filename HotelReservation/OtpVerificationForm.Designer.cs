@@ -30,6 +30,7 @@ namespace HotelReservation
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lnkResend = new System.Windows.Forms.LinkLabel();
             this.txtOTP6 = new System.Windows.Forms.MaskedTextBox();
@@ -44,12 +45,17 @@ namespace HotelReservation
             this.lblOTP = new System.Windows.Forms.Label();
             this.btnVerify = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblCountdown = new System.Windows.Forms.Label();
+            this.otpTimer = new System.Windows.Forms.Timer(this.components);
+            this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.nightControlBox1);
+            this.panel1.Controls.Add(this.lblCountdown);
             this.panel1.Controls.Add(this.lnkResend);
             this.panel1.Controls.Add(this.txtOTP6);
             this.panel1.Controls.Add(this.txtOTP5);
@@ -64,7 +70,7 @@ namespace HotelReservation
             this.panel1.Controls.Add(this.btnVerify);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Location = new System.Drawing.Point(439, 217);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(435, 383);
             this.panel1.TabIndex = 13;
@@ -177,7 +183,7 @@ namespace HotelReservation
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(0, 0);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(132, 22);
             this.txtUsername.TabIndex = 13;
@@ -203,7 +209,7 @@ namespace HotelReservation
             this.btnVerify.Font = new System.Drawing.Font("Segoe UI Historic", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerify.ForeColor = System.Drawing.Color.White;
             this.btnVerify.Location = new System.Drawing.Point(109, 262);
-            this.btnVerify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVerify.Margin = new System.Windows.Forms.Padding(4);
             this.btnVerify.Name = "btnVerify";
             this.btnVerify.Size = new System.Drawing.Size(215, 46);
             this.btnVerify.TabIndex = 4;
@@ -214,10 +220,49 @@ namespace HotelReservation
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(0, 0);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(132, 22);
             this.txtPassword.TabIndex = 14;
+            // 
+            // lblCountdown
+            // 
+            this.lblCountdown.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblCountdown.AutoSize = true;
+            this.lblCountdown.Location = new System.Drawing.Point(150, 94);
+            this.lblCountdown.Name = "lblCountdown";
+            this.lblCountdown.Size = new System.Drawing.Size(0, 16);
+            this.lblCountdown.TabIndex = 28;
+            this.lblCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // otpTimer
+            // 
+            this.otpTimer.Interval = 1000;
+            this.otpTimer.Tick += new System.EventHandler(this.otpTimer_Tick);
+            // 
+            // nightControlBox1
+            // 
+            this.nightControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nightControlBox1.BackColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.CloseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.nightControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nightControlBox1.DefaultLocation = true;
+            this.nightControlBox1.DisableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.DisableMinimizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableCloseColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.nightControlBox1.EnableMaximizeButton = false;
+            this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableMinimizeButton = false;
+            this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.nightControlBox1.Location = new System.Drawing.Point(293, 3);
+            this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nightControlBox1.MinimizeHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.Name = "nightControlBox1";
+            this.nightControlBox1.Size = new System.Drawing.Size(139, 31);
+            this.nightControlBox1.TabIndex = 29;
             // 
             // OTPVerificationForm
             // 
@@ -256,5 +301,8 @@ namespace HotelReservation
         private System.Windows.Forms.MaskedTextBox txtOTP3;
         private System.Windows.Forms.MaskedTextBox txtOTP2;
         private System.Windows.Forms.LinkLabel lnkResend;
+        private System.Windows.Forms.Label lblCountdown;
+        private System.Windows.Forms.Timer otpTimer;
+        private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
     }
 }

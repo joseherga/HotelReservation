@@ -7,6 +7,7 @@ namespace HotelReservation
 {
     public partial class PaymentScreenForm : Form
     {
+        // Public fields to carry booking details into this payment form
         public string FullName;
         public int Guest;
         public string RoomType;
@@ -15,7 +16,10 @@ namespace HotelReservation
         public decimal Rate;
         public int RoomID;
 
+        // Reference to reservations form (optional, for refreshing after payment)
         private ViewReservationsForm _viewReservationsForm;
+
+        // Timer for auto-close countdown
         private Timer autoCloseTimer;
         private int countdownSeconds = 20;
 
@@ -24,26 +28,27 @@ namespace HotelReservation
             InitializeComponent();
             _viewReservationsForm = viewReservationsForm;
 
-            // Initialize timer
+            // Initialize countdown timer (ticks every second)
             autoCloseTimer = new Timer();
             autoCloseTimer.Interval = 1000; // 1 second
             autoCloseTimer.Tick += AutoCloseTimer_Tick;
 
-            // Disable print receipt until payment is done
+            // Disable print receipt until payment is confirmed
             prntReceipt.Enabled = false;
 
-            lblCountdown.Visible = false; // Add lblCountdown to your form in designer
+            // Hide countdown label until payment is done
+            lblCountdown.Visible = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            BookingDetailsForm bd = new BookingDetailsForm();
-            bd.Show();
+            // Hide payment form without closing application
             this.Hide();
         }
 
         private void btnPayNow_Click(object sender, EventArgs e)
         {
+            // Validate payment fields (basic card info)
             if (string.IsNullOrWhiteSpace(txtbxCardName.Text) ||
                 string.IsNullOrWhiteSpace(txtbxCardNumber.Text) ||
                 string.IsNullOrWhiteSpace(masktbExpiryDate.Text) ||
@@ -54,16 +59,17 @@ namespace HotelReservation
                 return;
             }
 
-            // Payment successful
+            // Simulate payment success
             MessageBox.Show("Payment Successful! Thank you for your reservation.",
                 "Payment Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Save reservation details to database
             InsertReservation();
 
             // Enable the Print Receipt button
             prntReceipt.Enabled = true;
 
-            // Start countdown
+            // Start countdown to auto-return to dashboard
             countdownSeconds = 20;
             lblCountdown.Text = $"Returning to dashboard in {countdownSeconds} seconds...";
             lblCountdown.Visible = true;
@@ -72,9 +78,11 @@ namespace HotelReservation
 
         private void AutoCloseTimer_Tick(object sender, EventArgs e)
         {
+            // Decrease countdown each tick
             countdownSeconds--;
             lblCountdown.Text = $"Returning to dashboard in {countdownSeconds} seconds...";
 
+            // When countdown reaches zero, stop timer and return to dashboard
             if (countdownSeconds <= 0)
             {
                 autoCloseTimer.Stop();
@@ -91,6 +99,7 @@ namespace HotelReservation
                 {
                     con.Open();
 
+                    // Check if room is already booked for selected dates
                     string checkQuery = @"SELECT COUNT(*) FROM Reservations
                                           WHERE RoomID = @RoomID
                                           AND CheckOut > @CheckIn
@@ -110,6 +119,7 @@ namespace HotelReservation
                         }
                     }
 
+                    // Insert reservation record
                     string insert = @"INSERT INTO Reservations 
                                       (FullName, Guest, RoomType, CheckIn, CheckOut, Rate, RoomID, UserID)
                                       VALUES (@FullName, @Guest, @RoomType, @CheckIn, @CheckOut, @Rate, @RoomID, @UserID)";
@@ -127,6 +137,7 @@ namespace HotelReservation
 
                         cmd.ExecuteNonQuery();
 
+                        // Update room status to Occupied
                         string updateStatus = "UPDATE Rooms SET Status = 'Occupied' WHERE RoomID = @RoomID";
                         using (SqlCommand updateCmd = new SqlCommand(updateStatus, con))
                         {
@@ -147,11 +158,7 @@ namespace HotelReservation
             // Refresh reservations grid if referenced
             _viewReservationsForm?.LoadReservations();
 
-            if (Session.CurrentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
-                new AdminDashboardForm().Show();
-            else
-                new UserDashboard().Show();
-
+            // Close payment form
             this.Close();
         }
 
@@ -159,6 +166,7 @@ namespace HotelReservation
         {
             try
             {
+                // Generate receipt PDF on Desktop with unique filename
                 string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                     $"Receipt_{FullName}_{DateTime.Now:yyyyMMddHHmmss}.pdf");
 

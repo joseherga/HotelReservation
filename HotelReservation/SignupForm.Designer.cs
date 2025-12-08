@@ -72,7 +72,7 @@
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(91, 23);
-            this.lblUsername.TabIndex = 0;
+            this.lblUsername.TabIndex = 22;
             this.lblUsername.Text = "Username:";
             // 
             // lblPass
@@ -85,7 +85,7 @@
             this.lblPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(84, 23);
-            this.lblPass.TabIndex = 1;
+            this.lblPass.TabIndex = 23;
             this.lblPass.Text = "Password:";
             // 
             // txtFirstName
@@ -96,7 +96,7 @@
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(195, 29);
-            this.txtFirstName.TabIndex = 2;
+            this.txtFirstName.TabIndex = 0;
             // 
             // txtPassword
             // 
@@ -104,7 +104,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(132, 22);
-            this.txtPassword.TabIndex = 14;
+            this.txtPassword.TabIndex = 6;
             // 
             // btnReg
             // 
@@ -117,7 +117,7 @@
             this.btnReg.Margin = new System.Windows.Forms.Padding(4);
             this.btnReg.Name = "btnReg";
             this.btnReg.Size = new System.Drawing.Size(119, 28);
-            this.btnReg.TabIndex = 4;
+            this.btnReg.TabIndex = 7;
             this.btnReg.Text = "REGISTER";
             this.btnReg.UseVisualStyleBackColor = false;
             this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
@@ -128,7 +128,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 28);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 26;
             // 
             // lblFirstname
             // 
@@ -140,7 +140,7 @@
             this.lblFirstname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFirstname.Name = "lblFirstname";
             this.lblFirstname.Size = new System.Drawing.Size(96, 23);
-            this.lblFirstname.TabIndex = 6;
+            this.lblFirstname.TabIndex = 17;
             this.lblFirstname.Text = "First Name:";
             // 
             // txtUsername
@@ -149,7 +149,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(132, 22);
-            this.txtUsername.TabIndex = 13;
+            this.txtUsername.TabIndex = 5;
             // 
             // label2
             // 
@@ -161,7 +161,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 19);
-            this.label2.TabIndex = 8;
+            this.label2.TabIndex = 13;
             this.label2.Text = "Already have an account?";
             // 
             // linkLogin
@@ -190,7 +190,7 @@
             this.lblLastname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLastname.Name = "lblLastname";
             this.lblLastname.Size = new System.Drawing.Size(55, 23);
-            this.lblLastname.TabIndex = 10;
+            this.lblLastname.TabIndex = 21;
             this.lblLastname.Text = "Email:";
             // 
             // txtEmail
@@ -200,7 +200,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(195, 29);
-            this.txtEmail.TabIndex = 11;
+            this.txtEmail.TabIndex = 4;
             // 
             // panel1
             // 
@@ -236,7 +236,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(897, 513);
-            this.panel1.TabIndex = 12;
+            this.panel1.TabIndex = 14;
             // 
             // label6
             // 
@@ -247,18 +247,18 @@
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(322, 20);
-            this.label6.TabIndex = 27;
+            this.label6.TabIndex = 11;
             this.label6.Text = "Please fill in the information below to continue.";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(516, 46);
+            this.label4.Location = new System.Drawing.Point(513, 46);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(541, 29);
-            this.label4.TabIndex = 26;
+            this.label4.TabIndex = 25;
             this.label4.Text = "------------------------------------------------------------------\r\n";
             // 
             // label5
@@ -269,7 +269,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(541, 29);
-            this.label5.TabIndex = 25;
+            this.label5.TabIndex = 24;
             this.label5.Text = "------------------------------------------------------------------\r\n";
             // 
             // lblCreateAcc
@@ -282,7 +282,7 @@
             this.lblCreateAcc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCreateAcc.Name = "lblCreateAcc";
             this.lblCreateAcc.Size = new System.Drawing.Size(359, 41);
-            this.lblCreateAcc.TabIndex = 13;
+            this.lblCreateAcc.TabIndex = 10;
             this.lblCreateAcc.Text = "CREATE YOUR ACCOUNT";
             this.lblCreateAcc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -296,7 +296,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(375, 17);
-            this.label3.TabIndex = 23;
+            this.label3.TabIndex = 12;
             this.label3.Text = "By registering, you agree to our Terms and Privacy Policy.";
             // 
             // lblSurname
@@ -309,7 +309,7 @@
             this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(82, 23);
-            this.lblSurname.TabIndex = 22;
+            this.lblSurname.TabIndex = 19;
             this.lblSurname.Text = "Surname:";
             // 
             // txtSurname
@@ -319,7 +319,7 @@
             this.txtSurname.Margin = new System.Windows.Forms.Padding(4);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(195, 29);
-            this.txtSurname.TabIndex = 21;
+            this.txtSurname.TabIndex = 2;
             // 
             // lblMidName
             // 
@@ -331,7 +331,7 @@
             this.lblMidName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMidName.Name = "lblMidName";
             this.lblMidName.Size = new System.Drawing.Size(117, 23);
-            this.lblMidName.TabIndex = 20;
+            this.lblMidName.TabIndex = 18;
             this.lblMidName.Text = "Middle Name:";
             // 
             // txtMidName
@@ -341,7 +341,7 @@
             this.txtMidName.Margin = new System.Windows.Forms.Padding(4);
             this.txtMidName.Name = "txtMidName";
             this.txtMidName.Size = new System.Drawing.Size(195, 29);
-            this.txtMidName.TabIndex = 19;
+            this.txtMidName.TabIndex = 1;
             // 
             // lblPhone
             // 
@@ -353,7 +353,7 @@
             this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(63, 23);
-            this.lblPhone.TabIndex = 18;
+            this.lblPhone.TabIndex = 20;
             this.lblPhone.Text = "Phone:";
             // 
             // txtPhone
@@ -363,7 +363,7 @@
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(195, 29);
-            this.txtPhone.TabIndex = 17;
+            this.txtPhone.TabIndex = 3;
             // 
             // txtPass
             // 
@@ -372,7 +372,7 @@
             this.txtPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(195, 29);
-            this.txtPass.TabIndex = 16;
+            this.txtPass.TabIndex = 6;
             // 
             // txtUser
             // 
@@ -381,7 +381,7 @@
             this.txtUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(195, 29);
-            this.txtUser.TabIndex = 15;
+            this.txtUser.TabIndex = 5;
             // 
             // btnCancel
             // 
@@ -394,7 +394,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 28);
-            this.btnCancel.TabIndex = 12;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -408,7 +408,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1333, 60);
-            this.panel2.TabIndex = 13;
+            this.panel2.TabIndex = 16;
             // 
             // lblSupport
             // 
@@ -418,7 +418,7 @@
             this.lblSupport.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupport.Name = "lblSupport";
             this.lblSupport.Size = new System.Drawing.Size(311, 16);
-            this.lblSupport.TabIndex = 0;
+            this.lblSupport.TabIndex = 15;
             this.lblSupport.Text = "© 2025 Byte Lodge Hotel | support@bytelodge.com";
             // 
             // nightControlBox1
@@ -443,7 +443,7 @@
             this.nightControlBox1.MinimizeHoverForeColor = System.Drawing.Color.White;
             this.nightControlBox1.Name = "nightControlBox1";
             this.nightControlBox1.Size = new System.Drawing.Size(139, 31);
-            this.nightControlBox1.TabIndex = 14;
+            this.nightControlBox1.TabIndex = 27;
             // 
             // SignupForm
             // 
@@ -462,7 +462,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SignupForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.SignupForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

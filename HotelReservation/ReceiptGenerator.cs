@@ -8,13 +8,16 @@ namespace HotelReservation
 {
     public class ReceiptGenerator
     {
+        // Method to create a PDF receipt for a reservation
         public static void CreateReceipt(string FullName, string RoomType, int Guests, DateTime checkIn, DateTime checkOut, decimal Rate, string filePath,
-            string logoPath = @"C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\Logo.png") // Default logo path; change as necessary
+            string logoPath = @"C:\Users\Toni\Documents\PCU\Intergrative Programming\Group 8\HotelReservation-master\Logo.png") // Default logo path
         {
+            // Calculate nights and total amount
             int totalNights = Math.Max(1, (checkOut - checkIn).Days);
             decimal totalAmount = totalNights * Rate;
-            string receiptNumber = $"BL-{DateTime.Now:yyyyMMddHHmmss}";
+            string receiptNumber = $"BL-{DateTime.Now:yyyyMMddHHmmss}"; // Unique receipt number
 
+            // Create PDF document with margins
             var doc = new Document(PageSize.A4, 40, 40, 40, 40);
 
             using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -22,6 +25,7 @@ namespace HotelReservation
                 PdfWriter writer = PdfWriter.GetInstance(doc, fs);
                 doc.Open();
 
+                // Define fonts
                 BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 Font headerFont = new Font(bf, 16, Font.BOLD);
                 Font subHeaderFont = new Font(bf, 11, Font.NORMAL);
@@ -29,6 +33,7 @@ namespace HotelReservation
                 Font valueFont = new Font(bf, 10, Font.NORMAL);
                 Font smallFont = new Font(bf, 9, Font.ITALIC);
 
+                // Header table with logo + hotel info
                 PdfPTable headerTbl = new PdfPTable(2) { WidthPercentage = 100f };
                 headerTbl.SetWidths(new float[] { 1f, 3f });
 
@@ -48,7 +53,6 @@ namespace HotelReservation
                 }
                 headerTbl.AddCell(logoCell);
 
-                // Hotel info cell
                 PdfPCell infoCell = new PdfPCell()
                 {
                     Border = Rectangle.NO_BORDER,
@@ -67,7 +71,7 @@ namespace HotelReservation
                 doc.Add(new Chunk(line));
                 doc.Add(new Paragraph("\n"));
 
-                // Guest and booking details table
+                // Guest and booking details
                 PdfPTable detailsTbl = new PdfPTable(2) { WidthPercentage = 100f, SpacingBefore = 4f, SpacingAfter = 8f };
                 detailsTbl.SetWidths(new float[] { 1f, 1f });
 
@@ -76,7 +80,7 @@ namespace HotelReservation
                 left.AddElement(new Phrase(FullName + "\n", valueFont));
                 left.AddElement(new Phrase("Room Type:", labelFont));
                 left.AddElement(new Phrase(RoomType + "\n", valueFont));
-                left.AddElement(new Phrase("Numer of Guest/s:", labelFont));
+                left.AddElement(new Phrase("Number of Guest/s:", labelFont));
                 left.AddElement(new Phrase(Guests.ToString() + "\n", valueFont));
 
                 PdfPCell right = new PdfPCell() { Border = Rectangle.NO_BORDER };
@@ -108,6 +112,7 @@ namespace HotelReservation
                 chargesTbl.AddCell(CreateCell(Rate.ToString("C"), valueFont, Element.ALIGN_RIGHT));
                 chargesTbl.AddCell(CreateCell(totalAmount.ToString("C"), valueFont, Element.ALIGN_RIGHT));
 
+                // Downpayment and balance
                 decimal downPayment = totalAmount * 0.20m;   // 20% downpayment
                 decimal balance = totalAmount - downPayment;
 
@@ -117,6 +122,7 @@ namespace HotelReservation
                 chargesTbl.AddCell(CreateCell("Remaining Balance", labelFont, Element.ALIGN_LEFT, colspan: 3, hasBorder: false));
                 chargesTbl.AddCell(CreateCell(balance.ToString("C"), valueFont, Element.ALIGN_RIGHT));
 
+                // Amount paid today row
                 PdfPCell paidTodayLabel = new PdfPCell(new Phrase("Amount Paid Today", labelFont))
                 {
                     Colspan = 3,
@@ -132,7 +138,7 @@ namespace HotelReservation
 
                 doc.Add(chargesTbl);
 
-                // Payment details / thank you
+                // Payment details / thank you note
                 PdfPTable bottomTbl = new PdfPTable(2) { WidthPercentage = 100f };
                 bottomTbl.SetWidths(new float[] { 2f, 1f });
 
@@ -142,18 +148,19 @@ namespace HotelReservation
                 noteCell.PaddingTop = 6f;
                 bottomTbl.AddCell(noteCell);
 
-                // Footer line & contact
+                // Footer line & contact info
                 doc.Add(new Paragraph("\n"));
                 var footerLine = new LineSeparator(0.5f, 100f, BaseColor.LIGHT_GRAY, Element.ALIGN_CENTER, -2f);
                 doc.Add(new Chunk(footerLine));
                 doc.Add(new Paragraph("ByteLodge • 150 Greenwich Street • ByteLodge@mail.com", smallFont) { Alignment = Element.ALIGN_CENTER });
 
+                // Close document
                 doc.Close();
                 writer.Close();
             }
         }
 
-        // Helper to create table cells quicker
+        // Helper method to create table cells quickly
         private static PdfPCell CreateCell(string text, Font font, int horizAlign = Element.ALIGN_LEFT, int colspan = 1, bool hasBorder = true)
         {
             PdfPCell cell = new PdfPCell(new Phrase(text, font));

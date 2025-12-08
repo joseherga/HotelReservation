@@ -9,29 +9,33 @@ namespace HotelReservation
 {
     public partial class LoginForm : Form
     {
+        // Database connection setup using CallDatabase helper
         static CallDatabase cd = new CallDatabase();
         SqlConnection con = new SqlConnection(cd.GetDatabasePath());
 
         public LoginForm()
         {
-            InitializeComponent();
+            InitializeComponent(); // Initialize UI components
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Open signup form if user clicks "Sign up" link
             SignupForm signup = new SignupForm();
             signup.Show();
-            this.Hide();
+            this.Hide(); // Hide login form while signup is active
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Get username and password from textboxes
             string username = txtUser.Text.Trim();
             string password = txtPass.Text;
 
-            // Clean password from invisible characters
+            // Clean password from invisible characters (extra safety)
             password = CleanPassword(password);
 
+            // Validate input: both fields must be filled
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please enter both username and password.", "Login Failed",
@@ -39,12 +43,14 @@ namespace HotelReservation
                 return;
             }
 
+            // Hash password using SHA256 for secure comparison
             string hashedPassword = HashPassword(password);
 
             try
             {
                 con.Open();
 
+                // Query user info by username
                 string query = "SELECT UserID, FullName, Email, Phone, UserType, Password FROM UserInfo WHERE Username = @Username";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -56,9 +62,10 @@ namespace HotelReservation
                         {
                             string storedPassword = reader["Password"].ToString().Trim();
 
-                            // Check both hashed and plain text password
+                            // Compare stored password with hashed or plain text (fallback for demo data)
                             if (storedPassword == hashedPassword || storedPassword == password)
                             {
+                                // Save logged-in user info into Session
                                 Session.CurrentUser = new User
                                 {
                                     UserID = Convert.ToInt32(reader["UserID"]),
@@ -68,24 +75,28 @@ namespace HotelReservation
                                     Role = reader["UserType"].ToString()
                                 };
 
+                                // Show success message
                                 MessageBox.Show($"Welcome back, {Session.CurrentUser.FullName}!", "Login Successful",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                                // Redirect based on role
                                 if (Session.CurrentUser.Role == "Admin")
                                     new AdminDashboardForm().Show();
                                 else
                                     new UserDashboard().Show();
 
-                                this.Hide();
+                                this.Hide(); // Hide login form after successful login
                             }
                             else
                             {
+                                // Wrong password
                                 MessageBox.Show("Invalid username or password.", "Login Failed",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
+                            // No user found with that username
                             MessageBox.Show("User not found.", "Login Failed",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -94,22 +105,23 @@ namespace HotelReservation
             }
             catch (Exception ex)
             {
+                // Handle unexpected errors (e.g., DB connection issues)
                 MessageBox.Show("Error during login: " + ex.Message, "Login Failed",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
+                // Always close connection after use
                 if (con.State == ConnectionState.Open)
                     con.Close();
             }
         }
 
-
         private string CleanPassword(string password)
         {
             if (password == null) return "";
 
-            // Remove ALL whitespace & invisible characters
+            // Remove whitespace and invisible characters to avoid login issues
             password = password.Trim();
             password = password.Replace(" ", "");
             password = password.Replace("\n", "");
@@ -122,6 +134,7 @@ namespace HotelReservation
 
         private string HashPassword(string password)
         {
+            // Hash password using SHA256 for security
             using (SHA256 sha = SHA256.Create())
             {
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -131,12 +144,8 @@ namespace HotelReservation
 
         private void chckBackShowPass_CheckedChanged(object sender, EventArgs e)
         {
+            // Toggle password visibility when checkbox is clicked
             txtPass.UseSystemPasswordChar = !chckBackShowPass.Checked;
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

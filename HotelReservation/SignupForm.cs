@@ -8,21 +8,18 @@ namespace HotelReservation
 {
     public partial class SignupForm : Form
     {
+        // Database connection setup using CallDatabase helper
         static CallDatabase cd = new CallDatabase();
         SqlConnection con = new SqlConnection(cd.GetDatabasePath());
 
         public SignupForm()
         {
-            InitializeComponent();
-        }
-
-        private void SignupForm_Load(object sender, EventArgs e)
-        {
-
+            InitializeComponent(); // Initialize UI components
         }
 
         private void btnReg_Click(object sender, EventArgs e)
         {
+            // Collect input values from textboxes
             string firstName = txtFirstName.Text.Trim();
             string middleName = txtMidName.Text.Trim();
             string surname = txtSurname.Text.Trim();
@@ -41,13 +38,14 @@ namespace HotelReservation
                 return;
             }
 
+            // Build full name (handles middle name gracefully)
             string fullName = $"{firstName} {middleName} {surname}".Replace("  ", " ").Trim();
 
-            // Check if username/email already exists
+            // Check if username/email already exists in database
             if (IsDuplicateUser(username, email))
                 return;
 
-            // Send OTP to verify email (using EmailHelper now)
+            // Generate OTP and send to email for verification
             string otpCode = new Random().Next(100000, 999999).ToString();
             bool otpSent = EmailHelper.SendOtp(email, otpCode);
 
@@ -57,9 +55,11 @@ namespace HotelReservation
                 return;
             }
 
+            // Show OTP verification form
             OTPVerificationForm otpForm = new OTPVerificationForm(otpCode, email);
             otpForm.ShowDialog();
 
+            // If OTP verified, proceed with registration
             if (otpForm.Tag != null && otpForm.Tag.ToString() == "Verified")
             {
                 RegisterUser(firstName, middleName, surname, fullName, phone, email, username, password);
@@ -110,11 +110,12 @@ namespace HotelReservation
             {
                 con.Open();
 
-            string query = @"
-            INSERT INTO UserInfo 
-            (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType)
-            OUTPUT INSERTED.UserID
-            VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
+                // Insert new user record into database
+                string query = @"
+                INSERT INTO UserInfo 
+                (FirstName, MiddleName, Surname, FullName, Phone, Email, Username, Password, UserType)
+                OUTPUT INSERTED.UserID
+                VALUES (@FirstName, @MiddleName, @Surname, @FullName, @Phone, @Email, @Username, @Password, @UserType)";
 
                 int newUserID;
 
@@ -127,10 +128,10 @@ namespace HotelReservation
                     cmd.Parameters.AddWithValue("@Phone", phone);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", HashPassword(password));
+                    cmd.Parameters.AddWithValue("@Password", HashPassword(password)); // Securely hash password
                     cmd.Parameters.AddWithValue("@UserType", "Customer");
 
-                    // GET THE NEW USER ID
+                    // Get the new UserID from database
                     newUserID = (int)cmd.ExecuteScalar();
                 }
 
@@ -146,6 +147,7 @@ namespace HotelReservation
 
                 MessageBox.Show("Account created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Redirect to User Dashboard
                 new UserDashboard().Show();
                 this.Hide();
             }
@@ -161,6 +163,7 @@ namespace HotelReservation
 
         private string HashPassword(string password)
         {
+            // Hash password using SHA256 for security
             using (SHA256 sha = SHA256.Create())
             {
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -170,12 +173,14 @@ namespace HotelReservation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            // Cancel registration and return to login form
             new LoginForm().Show();
             this.Close();
         }
 
         private void linkLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Navigate back to login form
             new LoginForm().Show();
             this.Close();
         }

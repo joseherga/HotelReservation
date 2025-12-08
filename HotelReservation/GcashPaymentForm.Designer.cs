@@ -31,6 +31,7 @@
             this.LabelQR = new ReaLTaiizor.Controls.SmallLabel();
             this.btnConfirmPayment = new ReaLTaiizor.Controls.Button();
             this.pictureBoxQR = new System.Windows.Forms.PictureBox();
+            this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,13 +79,37 @@
             this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxQR.TabIndex = 0;
             this.pictureBoxQR.TabStop = false;
-            this.pictureBoxQR.Click += new System.EventHandler(this.pictureBoxQR_Click);
+            // 
+            // nightControlBox1
+            // 
+            this.nightControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nightControlBox1.BackColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.CloseHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.nightControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
+            this.nightControlBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nightControlBox1.DefaultLocation = true;
+            this.nightControlBox1.DisableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.DisableMinimizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableCloseColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.nightControlBox1.EnableMaximizeButton = true;
+            this.nightControlBox1.EnableMaximizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.EnableMinimizeButton = false;
+            this.nightControlBox1.EnableMinimizeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.Location = new System.Drawing.Point(239, -1);
+            this.nightControlBox1.MaximizeHoverColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.MaximizeHoverForeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.MinimizeHoverColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.MinimizeHoverForeColor = System.Drawing.Color.Transparent;
+            this.nightControlBox1.Name = "nightControlBox1";
+            this.nightControlBox1.Size = new System.Drawing.Size(139, 31);
+            this.nightControlBox1.TabIndex = 3;
             // 
             // GCashPaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 353);
+            this.Controls.Add(this.nightControlBox1);
             this.Controls.Add(this.LabelQR);
             this.Controls.Add(this.btnConfirmPayment);
             this.Controls.Add(this.pictureBoxQR);
@@ -105,5 +130,6 @@
         private System.Windows.Forms.PictureBox pictureBoxQR;
         private ReaLTaiizor.Controls.Button btnConfirmPayment;
         private ReaLTaiizor.Controls.SmallLabel LabelQR;
+        private ReaLTaiizor.Controls.NightControlBox nightControlBox1;
     }
 }

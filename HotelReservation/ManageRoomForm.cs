@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelReservation
 {
     public partial class ManageRoomForm : Form
     {
+        // Database connection setup using CallDatabase helper
         static CallDatabase cd = new CallDatabase();
         SqlConnection con = new SqlConnection(cd.GetDatabasePath());
         SqlCommand cmd;
@@ -20,54 +16,70 @@ namespace HotelReservation
         public ManageRoomForm()
         {
             InitializeComponent();
-            dgvRooms.CellClick += dgvRooms_CellClick;
-            dgvRooms.DataBindingComplete += dgvRooms_DataBindingComplete;
+
+            // Attach event handlers for DataGridView
+            dgvRooms.CellClick += dgvRooms_CellClick;              // Handle row clicks
+            dgvRooms.DataBindingComplete += dgvRooms_DataBindingComplete; // Style rows after data loads
         }
 
+        // Public method so other forms can refresh room list
         public void RefreshRooms()
         {
             LoadRooms();
         }
 
-
         private void ManageRoomForm_Load(object sender, EventArgs e)
         {
+            // Configure numeric controls for Rate (price per room)
             numRate.Maximum = 100000;
             numRate.Minimum = 0;
             numRate.Increment = 100;
 
+            // Configure numeric controls for Capacity (number of guests)
             numCapacity.Maximum = 20;
             numCapacity.Minimum = 1;
 
-            // Populate dropdowns
+            // Populate dropdown for room types
             cmbRoomType.Items.AddRange(new string[] {
                 "Single Room", "Double Room", "Deluxe Room", "Family Room", "Suite", "President Suite"
             });
 
+            // Populate dropdown for room status options
             cmbStatus.Items.AddRange(new string[] {
                 "Available", "Occupied", "Maintenance"
             });
 
+            // Load all room data into the DataGridView
             LoadRooms();
         }
 
         private void dgvRooms_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvRooms.Rows[e.RowIndex];
+            // Ignore clicks on header row or empty space
+            if (e.RowIndex < 0) return;
 
-                txtRoomNumber.Text = row.Cells["RoomNumber"].Value?.ToString();
-                cmbRoomType.Text = row.Cells["RoomType"].Value?.ToString();
-                numRate.Value = Convert.ToDecimal(row.Cells["Rate"].Value);
-                object capacityValue = row.Cells["Capacity"].Value;
-                numCapacity.Value = capacityValue != DBNull.Value ? Convert.ToInt32(capacityValue) : numCapacity.Minimum;
-                cmbStatus.Text = row.Cells["Status"].Value?.ToString();
-            }
+            // Get the row that was clicked
+            DataGridViewRow row = dgvRooms.Rows[e.RowIndex];
+
+            // Fill form fields with the selected room’s details
+            txtRoomNumber.Text = row.Cells["RoomNumber"].Value?.ToString();
+            cmbRoomType.Text = row.Cells["RoomType"].Value?.ToString();
+
+            // Safely convert Rate value, fallback to minimum if null/empty
+            object rateValue = row.Cells["Rate"].Value;
+            numRate.Value = rateValue != DBNull.Value ? Convert.ToDecimal(rateValue) : numRate.Minimum;
+
+            // Safely convert Capacity value, fallback to minimum if null/empty
+            object capacityValue = row.Cells["Capacity"].Value;
+            numCapacity.Value = capacityValue != DBNull.Value ? Convert.ToInt32(capacityValue) : numCapacity.Minimum;
+
+            // Set Status dropdown to match the selected room’s status
+            cmbStatus.Text = row.Cells["Status"].Value?.ToString();
         }
 
         private void dgvRooms_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            // Apply color coding based on room status and who booked
             foreach (DataGridViewRow row in dgvRooms.Rows)
             {
                 string status = row.Cells["Status"].Value?.ToString();
@@ -89,6 +101,7 @@ namespace HotelReservation
 
         private void LoadRooms()
         {
+            // Query rooms with reservation and user info
             using (SqlConnection con = new SqlConnection(cd.GetDatabasePath()))
             {
                 string query = @"SELECT
@@ -107,11 +120,12 @@ namespace HotelReservation
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
+                    // Bind results to DataGridView
                     dgvRooms.DataSource = dt;
                     dgvRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     dgvRooms.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-                    // Optional: hide RoomID column if you include it in SELECT
+                    // Hide RoomID column (internal use only)
                     if (dgvRooms.Columns.Contains("RoomID"))
                         dgvRooms.Columns["RoomID"].Visible = false;
                 }
@@ -150,6 +164,7 @@ namespace HotelReservation
                         return;
                     }
 
+                    // Insert new room record
                     string query = @"INSERT INTO Rooms (RoomNumber, RoomType, Rate, Capacity, Status)
                                      VALUES (@RoomNumber, @RoomType, @Rate, @Capacity, @Status)";
                     SqlCommand cmd = new SqlCommand(query, con);
@@ -183,6 +198,7 @@ namespace HotelReservation
                 try
                 {
                     con.Open();
+                    // Update selected room record
                     string query = @"UPDATE Rooms SET RoomNumber = @RoomNumber, RoomType = @RoomType,
                                      Rate = @Rate, Capacity = @Capacity, Status = @Status 
                                      WHERE RoomID = @RoomID";
@@ -219,6 +235,7 @@ namespace HotelReservation
             int roomID = Convert.ToInt32(selectedRow.Cells["RoomID"].Value);
             string status = selectedRow.Cells["Status"].Value?.ToString();
 
+            // Prevent deleting occupied rooms
             if (status == "Occupied")
             {
                 MessageBox.Show("This room is currently occupied and cannot be deleted.", "Delete Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -236,8 +253,8 @@ namespace HotelReservation
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Room deleted successfully.");
-                    LoadRooms();
-                    ClearFields();
+                    LoadRooms();   // Refresh grid after deletion
+                    ClearFields(); // Reset input fields
                 }
                 catch (Exception ex)
                 {
@@ -248,11 +265,13 @@ namespace HotelReservation
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            // Reset all input fields
             ClearFields();
         }
 
         private void ClearFields()
         {
+            // Clear textboxes and reset dropdowns/numeric controls
             txtRoomNumber.Clear();
 
             cmbRoomType.SelectedIndex = -1;
@@ -265,6 +284,7 @@ namespace HotelReservation
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            // Close ManageRoomForm and return to previous screen
             this.Close();
         }
     }
